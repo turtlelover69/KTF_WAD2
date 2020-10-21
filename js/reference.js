@@ -1,4 +1,4 @@
-// HOME PAGE
+// HOME TEST
 
 // #1 Populating the category buttons 
 // We should have an array of objects(categories), which contains name, colour(of button), image, ingredientslist
