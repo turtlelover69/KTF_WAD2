@@ -1,4 +1,1 @@
 // use twitter typeahead
-
-
-// faggot
