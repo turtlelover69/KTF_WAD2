@@ -22,3 +22,5 @@ function extractFromJson(){
             console.log(data)
         });
 }
+
+extractFromJson()
