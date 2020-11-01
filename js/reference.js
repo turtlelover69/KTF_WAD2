@@ -5,13 +5,6 @@
 // Function will loop through this array and create buttons on homepage.html
 // These buttons will display a popup(?) which contains all the ingredients under said category as checkboxes
 
-var categories = {
-    meat: [],
-    vegetable: [],
-    seafood: [],
-    fruit: [],
-    wheat: []
-}
 
 // #2 Searchbar that has auto complete. Typing ch will suggest chicken, cheese, chinese bat, chloride etc.
 //  These suggestions will appear in a dropdown, which user can click to add.
