@@ -31,8 +31,15 @@
 
 // #9 Is there a page for users to browse all recipes or search for recipe by name?
 
-
 //#10 make an array of ingredients that is retrieved from HTML. Then send it to JC javascript API.
 
 // #11 when the items are being submitted or selected from categories, add to the below selection box. 
 // then submit to the API call made by JC.
+
+
+
+
+
+
+
+
