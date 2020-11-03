@@ -5,6 +5,7 @@
 // Function will loop through this array and create buttons on homepage.html
 // These buttons will display a popup(?) which contains all the ingredients under said category as checkboxes
 
+
 // #2 Searchbar that has auto complete. Typing ch will suggest chicken, cheese, chinese bat, chloride etc.
 //  These suggestions will appear in a dropdown, which user can click to add.
 
@@ -30,10 +31,15 @@
 
 // #9 Is there a page for users to browse all recipes or search for recipe by name?
 
-var dairylist = ["butter","cheese","cream","milk","yogurt"]
-var meatlist = ["beef","chicken","duck","mutton","lamb","pork","sausage","turkey","venison"]
-var veglist = ["broccoli","cabbage","capsicum","carrot","celery","garlic","kale","lettuce","mushroom","onion","potato","spinach"]
-var seafoodlist = ["catfish","clam","cod","crab","lobster","salmon","scallop","shrimp","tuna"]
-var grainlist = ["barley","bread","oat","pasta","rice","wheat"]
-var fruitlist = ["apple","banana","blueberry","coconut","date","fig","grape","lemon","mango","orange","peach","pineapple","strawberry","tomato"]
+//#10 make an array of ingredients that is retrieved from HTML. Then send it to JC javascript API.
+
+// #11 when the items are being submitted or selected from categories, add to the below selection box. 
+// then submit to the API call made by JC.
+
+
+
+
+
+
+
 
