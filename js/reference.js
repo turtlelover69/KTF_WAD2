@@ -29,3 +29,11 @@
 // Change pw? Change Profile pic? idk do we even need this
 
 // #9 Is there a page for users to browse all recipes or search for recipe by name?
+
+var dairylist = ["butter","cheese","cream","milk","yogurt"]
+var meatlist = ["beef","chicken","duck","mutton","lamb","pork","sausage","turkey","venison"]
+var veglist = ["broccoli","cabbage","capsicum","carrot","celery","garlic","kale","lettuce","mushroom","onion","potato","spinach"]
+var seafoodlist = ["catfish","clam","cod","crab","lobster","salmon","scallop","shrimp","tuna"]
+var grainlist = ["barley","bread","oat","pasta","rice","wheat"]
+var fruitlist = ["apple","banana","blueberry","coconut","date","fig","grape","lemon","mango","orange","peach","pineapple","strawberry","tomato"]
+
