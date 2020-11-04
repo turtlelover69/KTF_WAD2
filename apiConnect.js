@@ -10,6 +10,8 @@ var youtubeAPI='';
 var spoonAPI='';
 
 
+
+
 function call_api(input,functionName) {
     // Step 1
     var request = new XMLHttpRequest(); // Prep to make an HTTP request
@@ -40,18 +42,53 @@ function call_api(input,functionName) {
 function urlFunction(input,functionName) {
  
     if (functionName=="getIngredients"){
-        var base="https://api.spoonacular.com/recipes/findByIngredients?ingredients=";
-        var end='&number=10&apiKey=';
-        var ingredient;
-        for (ingredient of input){
-            if (ingredient==input[0]){
-                base=base+ingredient;
+        var base="https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=10&apiKey=";
+
+
+        var ingredients='';
+        var diet='';
+        var intolerances='';
+        var cuisines=''
+
+        if (input[0].length >0){
+            var ingredient;
+            for (ingredient in input[0]){
+                if (ingredient==0){
+                    ingredients='&includeIngredients='+input[0][ingredient];
+                }
+                else {
+                    ingredients=ingredients +","+ input[0][ingredient];
+                }
+            }}
+
+        if (input[1].length >0){
+            diet="&diet"+input[1];
             }
-            else {
-                base=base +",+"+ ingredient;
-            }
-        }
-        return (base+end+spoonAPI)}
+
+        if (input[2].length >0){
+            var intolerance;
+            for (intolerance in input[2]){
+                if (intolerance==0){
+                    intolerances='&intolerances='+input[2][intolerance];
+                }
+                else {
+                    intolerances=intolerances +","+ input[2][intolerance];
+                }
+            }}
+    
+        if (input[3].length >0){
+            var cuisine;
+            for (cuisine in input[3]){
+                if (cuisine==0){
+                    cuisines='&cuisine='+input[3][cuisine];
+                }
+                else {
+                    cuisines=cuisines +","+ input[3][cuisine];
+                }
+            }}
+
+     
+        return (base+spoonAPI+ingredients+diet+intolerances+cuisines)}
 
     else if (functionName=="youtubeLink"){
         var base="https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=asmr+chicken+rice";
