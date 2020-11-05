@@ -58,7 +58,17 @@ function populate_checkbox(selected_ingredient){
 
 // Retrieve value from search box
 function populate_searchbox(selected_ingredient){
-    
+    // Remember to validate the input!!!
+    var selected_ingredient = document.getElementById('ingredient_input').value
+    var search_tag = `
+        <div class='search-tag' id='${selected_ingredient}_tag'>
+            <h4>${selected_ingredient}</h4>
+            <button onclick="remove_tag('${selected_ingredient}')">X</button>
+        </div>
+        `;
+    document.getElementById('search_tags').innerHTML += search_tag;
+
+
 }
 
 // Remove selected ingredient tag
@@ -74,8 +84,9 @@ function remove_all_tags(){
 }
 
 
-function populate_result(result){
-    console.log(result);
+function populate_result(retrieved_tag){
+    result = retrieved_tag.results
+    console.log(result)
 }
 
 //[START] Using mutation observer to gather all the ingredients and send to spoontaculous API
