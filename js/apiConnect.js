@@ -1,5 +1,3 @@
-var youtubeAPI='AIzaSyD9NqRiVfxb4NsnsfXrWht1MZZ6S2SXnDo';
-var spoonAPI='4e1276187ed04b2ea650ed7e960ff1eb';
 
 
 /*function names for call_api
