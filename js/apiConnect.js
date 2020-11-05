@@ -1,5 +1,6 @@
-var youtubeAPI='';
-var spoonAPI='';
+var youtubeAPI='AIzaSyD9NqRiVfxb4NsnsfXrWht1MZZ6S2SXnDo';
+var spoonAPI='4e1276187ed04b2ea650ed7e960ff1eb';
+
 
 /*function names for call_api
 getIngredients:search api for recipes given a list of ingredients. Takes in list.
@@ -13,8 +14,11 @@ function call_api(input,functionName) {
     // Step 2
     request.onreadystatechange = function() {
         if( this.readyState == 4 && this.status == 200 ) {
-            var parseJSON = JSON.parse(this.responseText);
-            populate_result(parseJSON);
+
+            actionFunction(this,functionName);
+            
+
+
         }
     }
     // Step 3
@@ -45,7 +49,7 @@ function urlFunction(input,functionName) {
             }}
 
         if (input[1].length >0){
-            diet="&diet"+input[1];
+            diet="&diet="+input[1];
             }
 
         if (input[2].length >0){
@@ -93,9 +97,50 @@ function urlFunction(input,functionName) {
 }
 
 
-function actionFunction(input,functionName){
+function actionFunction(xml,functionName){
     if (functionName=="getIngredients"){
-        var response_json = JSON.parse(this.responseText);
+        var parseJSON = JSON.parse(xml.responseText);
+        document.getElementById('card-columns').innerHTML='';
+        var base='';
+        var info = parseJSON.results;
+        console.log(info);
+        var recipe;
+        for (recipe of info){
+            console.log(recipe);
+            var card= `
+                <div class="card" style=" background-color: white">
+                <img class="card-img-top" src="${recipe.image}" alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-title d-flex justify-content-center border border-dark">${recipe.title}</h5>
+                
+                <div class= "d-flex justify-content-center">
+                    <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.readyInMinutes} min</div>
+                    <i class="fas fa-stopwatch" style="display: inline;"></i>
+                </div>
+        
+                <div class= "d-flex justify-content-center">
+                    <div class="card-text" style="display: inline; margin-right: 10px;">${recipe.spoonacularScore} / 100</div>
+                    <i class="fas fa-star" style="display: inline;"></i>
+                </div>
+        
+                <div class= "d-flex justify-content-center">
+                    <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.missedIngredientCount} missing ingredients</div>
+                    <i class="far fa-question-circle" style="display: inline;"></i>
+                </div> 
+                </div>
+            </div>
+            `;
+            base+=card;
+            document.getElementById('card-columns').innerHTML=base;
+
+
+
+        }
+        
+
+        
+
+
     }
 
     else if (functionName=="youtubeLink"){
