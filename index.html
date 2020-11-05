@@ -16,6 +16,12 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src='bower_components/typeahead.js/dist/typeahead.bundle.min.js'></script>
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+
+    <script src="js/search.js"></script>
+</head>
+<body style = "background-color: black;">
+  <div class="container-fluid">
 
     <!-- <script type="text/javascript" src="js/dropdown.js"></script> -->
 
@@ -41,13 +47,13 @@
         
         <!--Search Bar-->
         <form class="form-inline" style = "margin-left : 80px" id='search_box'>
-          <input id='ingredient_input' class="form-control mr-2 typeahead" type="search" placeholder="Find an Ingredient" aria-label="Search" style="width: 400px;">
+          <input id='ingredient_input' class="form-control mr-2 typeahead" type="search" placeholder="Find an Ingredient" aria-label="Search" style="width: 400px;" font-family: "Itim,cursive;">
           <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" onclick="populate_searchbox()">Search</button>
         </form>
 
         <!--Right navigation bar-->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto" style = "margin-right: 0px; font-family: 'Indie Flower', cursive; font-size: large;">
+          <ul class="navbar-nav ml-auto" style = "margin-right: 0px; font-family: 'Itim', cursive; font-size: large;">
             <li class="nav-item active" >
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
@@ -74,7 +80,7 @@
     <!--Categories-->
     <div id="categories">
         <nav class="navbar navbar-expand-lg navbar-light row" style ="padding-top: 0; padding-left: 0; padding-right: 0;">
-            <ul id='navbar' class="navbar-nav col" style="font-family: 'Righteous', cursive; font-size: small; margin-right: 0; padding-right: 0;">
+            <ul id='navbar' class="navbar-nav col" style="font-family: 'Itim', cursive; font-size: medium; margin-right: 0; padding-right: 0;">
 
             </ul>
         </nav>

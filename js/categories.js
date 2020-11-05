@@ -1,12 +1,12 @@
 const categories = {
-    meatlist : ["beef","chicken","duck","mutton","lamb","pork","sausage","turkey","venison"],
-    seafoodlist : ["catfish","clam","cod","crab","lobster","salmon","scallop","shrimp","tuna"],
-    veglist : ["broccoli","cabbage","capsicum","carrot","celery","garlic","kale","lettuce","mushroom","onion","potato","spinach"],
-    dairylist : ["butter","cheese","cream","milk","yogurt"],
-    grainlist : ["barley","bread","oat","pasta","rice","wheat"],
-    dietList: ["Gluten Free","Ketogenic","Vegetarian","Lacto-Vegetarian","Ovo-Vegetarian","Vegan","Pescetarian","Paleo","Primal","Whole30"],
-    intolerancesList: ["Dairy","Egg","Gluten","Grain","Peanut","Seafood","Sesame","Shellfish","Soy","Sulfite","Tree Nut","Wheat"],
-    cuisinesList: ["African","American","British","Cajun","Caribbean","Chinese","Eastern European","European","French","German","Greek","Indian","Irish","Italian","Japanese","Jewish","Korean","Latin American","Mediterranean","Mexican","Middle Eastern","Nordic","Southern","Spanish","Thai","Vietnamese"]
+    meatlist : {list:["beef","chicken","duck","mutton","lamb","pork","sausage","turkey","venison"],name: "Meat", imageurl: "images/meat.jpg",color :"red"  },
+    seafoodlist : {list:["catfish","clam","cod","crab","lobster","salmon","scallop","shrimp","tuna"],name: "Seafood",imageurl: "images/seafood.jpg",color:"lightblue"},
+    veglist : {list:["broccoli","cabbage","capsicum","carrot","celery","garlic","kale","lettuce","mushroom","onion","potato","spinach"],name: "Vegetables",imageurl:"images/vegetables.jpg",color: "lightgreen"},
+    dairylist : {list:["butter","cheese","cream","milk","yogurt"],name:"Dairy",imageurl:"images/dairy.jpg",color: "beige"},
+    grainlist : {list:["barley","bread","oat","pasta","rice","wheat"],name:"Grains",imageurl:"images/grains.jpg",color:"yellow"},
+    dietList: {list:["gluten free","ketogenic","vegetarian","lacto-vegetarian","ovo-vegetarian","vegan","pescetarian","paleo","primal","whole30"],name:"Diets",imageurl:"images/diet.jpg",color:"orange"},
+    intolerancesList: {list:["dairy","egg","gluten","grain","peanut","seafood","sesame","shellfish","soy","sulfite","tree nut","wheat"],name:"Intolerances", imageurl: "images/intolerances.jpg",color: "pink"},
+    cuisinesList: {list:["african","american","british","cajun","caribbean","chinese","eastern european","european","french","german","greek","indian","irish","italian","japanese","jewish","korean","latin american","mediterranean","mexican","middle eastern","nordic","southern","spanish","thai","vietnamese"],name: "Cuisines", imageurl: "images/cuisines.jpg",color:"grey"} 
 }
 
 
@@ -15,15 +15,17 @@ function populate_categories()
 {
     var string
     // pls include checkboxes for this dropdown too
-    for(const [key,ingredients] of Object.entries(categories)){
+    for(const [key,values] of Object.entries(categories)){
         string += `
 
-        <li class="nav-item dropdown col bg-primary border border-dark">
-            <a class="nav-link dropdown-toggle d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                ${key}
+        <li class="nav-item dropdown col border border-dark" style = "background-image: url(${values.imageurl})">
+            <a class="nav-link dropdown-toggle d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                <mark class = "border border-dark" style="background-color:${values.color}">${values.name}</mark>
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="${key}">`;
-        for(var ingredient of ingredients){
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="${key}" style="background-color:${values.color}">
+            `;
+
+        for(var ingredient of values.list){
             string += `
                 <a class="dropdown-item" href="#">
                     <input type="checkbox" id= "${ingredient}_checkbox" onclick="populate_checkbox('${ingredient}')">
