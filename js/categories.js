@@ -1,10 +1,12 @@
 const categories = {
-    dairylist : ["butter","cheese","cream","milk","yogurt"],
     meatlist : ["beef","chicken","duck","mutton","lamb","pork","sausage","turkey","venison"],
-    veglist : ["broccoli","cabbage","capsicum","carrot","celery","garlic","kale","lettuce","mushroom","onion","potato","spinach"],
     seafoodlist : ["catfish","clam","cod","crab","lobster","salmon","scallop","shrimp","tuna"],
+    veglist : ["broccoli","cabbage","capsicum","carrot","celery","garlic","kale","lettuce","mushroom","onion","potato","spinach"],
+    dairylist : ["butter","cheese","cream","milk","yogurt"],
     grainlist : ["barley","bread","oat","pasta","rice","wheat"],
-    fruitlist : ["apple","banana","blueberry","coconut","date","fig","grape","lemon","mango","orange","peach","pineapple","strawberry","tomato"]
+    dietList: ["Gluten Free","Ketogenic","Vegetarian","Lacto-Vegetarian","Ovo-Vegetarian","Vegan","Pescetarian","Paleo","Primal","Whole30"],
+    intolerancesList: ["Dairy","Egg","Gluten","Grain","Peanut","Seafood","Sesame","Shellfish","Soy","Sulfite","Tree Nut","Wheat"],
+    cuisinesList: ["African","American","British","Cajun","Caribbean","Chinese","Eastern European","European","French","German","Greek","Indian","Irish","Italian","Japanese","Jewish","Korean","Latin American","Mediterranean","Mexican","Middle Eastern","Nordic","Southern","Spanish","Thai","Vietnamese"]
 }
 
 
@@ -52,6 +54,11 @@ function populate_checkbox(selected_ingredient){
     else{
         remove_tag(selected_ingredient);
     }
+}
+
+// Retrieve value from search box
+function populate_searchbox(selected_ingredient){
+    
 }
 
 // Remove selected ingredient tag

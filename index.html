@@ -33,9 +33,7 @@
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light row" style ="background-color: #FF69B4; position: sticky">
         <a class="navbar-brand" href="#">
-
             <img src="images/small ktf logo.png" width="85" height="40" alt="" loading="lazy" style = "margin-left:100px">
-
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -43,11 +41,11 @@
         
         <!--Search Bar-->
         <form class="form-inline" style = "margin-left : 80px" id='search_box'>
-          <input class="form-control mr-2 typeahead" type="search" placeholder="Find a Ingredient" aria-label="Search" style="width: 400px;">
+          <input id='ingredient_input' class="form-control mr-2 typeahead" type="search" placeholder="Find an Ingredient" aria-label="Search" style="width: 400px;">
           <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
         </form>
-        <!--End of Search Bar-->
 
+        <!--Right navigation bar-->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto" style = "margin-right: 0px; font-family: 'Indie Flower', cursive; font-size: large;">
             <li class="nav-item active" >
@@ -75,69 +73,13 @@
 
     <!--Categories-->
     <div id="categories">
-        <nav class="navbar navbar-expand-lg navbar-light row" style ="position: sticky; padding-top: 0; padding-left: 0; padding-right: 0;">
+        <nav class="navbar navbar-expand-lg navbar-light row" style ="padding-top: 0; padding-left: 0; padding-right: 0;">
             <ul id='navbar' class="navbar-nav col" style="font-family: 'Righteous', cursive; font-size: small; margin-right: 0; padding-right: 0;">
-                <!-- <li class="nav-item dropdown col bg-danger border border-dark">
-                <a class="nav-link dropdown-toggle d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Meat
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="meatlist">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-                </li>
-    
-                <li class="nav-item dropdown col bg-primary border border-dark">
-                <a class="nav-link dropdown-toggle d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Seafood
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="seafoodlist">
-    
-                </div>
-                </li>
-    
-                <li class="nav-item dropdown col bg-warning border border-dark">
-                <a class="nav-link dropdown-toggle d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Grains
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="grainslist">
-    
-                </div>
-                </li>
-    
-                <li class="nav-item dropdown col bg-success border border-dark">
-                <a class="nav-link dropdown-toggle d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Vegetable
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="veglist">
-    
-                </div>
-                </li>
-    
-                <li class="nav-item dropdown col bg-light border border-dark">
-                <a class="nav-link dropdown-toggle d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dairy
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="dairylist">
-    
-                </div>
-                </li> -->
-    
-                <!-- <li class="nav-item dropdown col bg-info border border-dark" >
-                <a class="nav-link dropdown-toggle d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dietary Restrictions
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="fruitlist">
-                </div>
-                </li> -->
+
             </ul>
         </nav>
     </div>
     
-
-    <!--Selected-->
-
 
     <!--Display cards-->
 
@@ -160,3 +102,7 @@
 <script src="js/dropdown.js"></script>
 </body>
 </html>
+
+
+
+
