@@ -1,6 +1,6 @@
 
 const youtubeAPI='';
-const spoonAPI='c168142caa444879a3b6d6892ed09067';
+const spoonAPI='5129bf8cf4cd49748f4ac7c6ac81408f';
 
 
 /*function names for call_api
@@ -83,7 +83,7 @@ function urlFunction(input,functionName) {
         for (word of recipe){
             base=base + "+" + word;
         }
-    
+        
         return base+end+youtubeAPI
     }
 
@@ -107,27 +107,27 @@ function actionFunction(xml,functionName){
         for (recipe of info){
             // console.log(recipe);
             var card= `
-                <div class="card" style=" background-color: white">
-                <img class="card-img-top" src="${recipe.image}" alt="Card image cap">
-                <div class="card-body">
-                <h5 class="card-title d-flex justify-content-center border border-dark">${recipe.title}</h5>
+                <div class="card col" style=" background-color: white">
+                    <img class="card-img-top " src="${recipe.image}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title d-flex justify-content-center border border-dark">${recipe.title}</h5>
                 
-                <div class= "d-flex justify-content-center">
-                    <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.readyInMinutes} min</div>
-                    <i class="fas fa-stopwatch" style="display: inline;"></i>
+                            <div class= "d-flex justify-content-center">
+                                <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.readyInMinutes} min</div>
+                                <i class="fas fa-stopwatch" style="display: inline;"></i>
+                            </div>
+                    
+                            <div class= "d-flex justify-content-center">
+                                <div class="card-text" style="display: inline; margin-right: 10px;">${recipe.spoonacularScore} / 100</div>
+                                <i class="fas fa-star" style="display: inline;"></i>
+                            </div>
+                    
+                            <div class= "d-flex justify-content-center">
+                                <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.missedIngredientCount} missing ingredients</div>
+                                <i class="far fa-question-circle" style="display: inline;"></i>
+                            </div> 
+                        </div>
                 </div>
-        
-                <div class= "d-flex justify-content-center">
-                    <div class="card-text" style="display: inline; margin-right: 10px;">${recipe.spoonacularScore} / 100</div>
-                    <i class="fas fa-star" style="display: inline;"></i>
-                </div>
-        
-                <div class= "d-flex justify-content-center">
-                    <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.missedIngredientCount} missing ingredients</div>
-                    <i class="far fa-question-circle" style="display: inline;"></i>
-                </div> 
-                </div>
-            </div>
             `;
             base+=card;
             document.getElementById('card-columns').innerHTML=base;

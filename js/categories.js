@@ -13,7 +13,7 @@ const categories = {
 //This function dynamically populate all the categories(meats,vegetables,etc) and also include checkbox
 function populate_categories()
 {
-    var string
+    var string = "";
     // pls include checkboxes for this dropdown too
     for(const [key,values] of Object.entries(categories)){
         string += `
@@ -75,7 +75,7 @@ function populate_checkbox(selected_item){
 }
 
 // Retrieve value from search box
-function populate_searchbox(selected_ingredient){
+function populate_searchbox(){
     // Remember to validate the input!!!
     var selected_ingredient = document.getElementById('ingredient_input').value
     var search_tag = `
@@ -128,7 +128,15 @@ const current_tag_nodes = function(mutationsList, observer) {
         all_current_tags[tag_type].push(tag_name);
     }
     console.log(all_current_tags)
-    call_api(all_current_tags,'getIngredients');
+    //If there is no return
+    if(all_current_tags.ingredient.length==0 && all_current_tags.diet.length==0 && all_current_tags.intolerance.length==0 && all_current_tags.cuisine.length==0){
+        console.log('No recipes atm');
+        document.getElementById("card-columns").innerHTML='';
+    }
+    else{
+        call_api(all_current_tags,'getIngredients');
+    }
+
 };
     // Create an observer instance linked to the callback function
 const observer = new MutationObserver(current_tag_nodes);
