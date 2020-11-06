@@ -30,6 +30,7 @@ function call_api(input,functionName) {
 function urlFunction(input,functionName) {
     if (functionName=="getIngredients"){
         var base="https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=10&apiKey=";
+        var spoonAPI = 'c168142caa444879a3b6d6892ed09067'
         var ingredients='';
         var diet='';
         var intolerances='';
@@ -130,12 +131,7 @@ function actionFunction(xml,functionName){
             `;
             base+=card;
             document.getElementById('card-columns').innerHTML=base;
-
-
-
         }
-        
-
         
 
 
