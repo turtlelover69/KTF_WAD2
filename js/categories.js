@@ -29,7 +29,10 @@ function populate_categories()
         for(var selection of values.list){
             var checkbox_str = selection + '_ingredient';
             if(type == 'Allergies'){
-                var checkbox_str = selection + '_allergy';
+                var checkbox_str = selection + '_intolerance';
+            }
+            else if(type == 'Diets'){
+                var checkbox_str = selection + '_diet';
             }
             else if(type == 'Cuisines'){
                 var checkbox_str = selection + '_cuisine';
@@ -51,6 +54,7 @@ function populate_categories()
 }
 
 // If it is checked, populate the selected ingredients at the checkbox, or remove when it is unchecked.
+// item_ingredient, item_intolerance, item_cuisine
 function populate_checkbox(selected_item){
     item_list = selected_item.split('_');
     var item = item_list[0];
@@ -59,7 +63,7 @@ function populate_checkbox(selected_item){
         var search_tag = `
         <div class='search-tag' id='${item}_${type}'>
             <h4>${item} </h4>
-            <button onclick="remove_tag('${item}')">X</button>
+            <button onclick="remove_tag('${item}_${type}')">X</button>
         </div>
         `;
 
@@ -75,9 +79,9 @@ function populate_searchbox(selected_ingredient){
     // Remember to validate the input!!!
     var selected_ingredient = document.getElementById('ingredient_input').value
     var search_tag = `
-        <div class='search-tag ingredient_tag' id='${selected_ingredient}_tag'>
+        <div class='search-tag' id='${selected_ingredient}_ingredient'>
             <h4>${selected_ingredient}</h4>
-            <button onclick="remove_tag('${selected_ingredient}')">X</button>
+            <button onclick="remove_tag('${selected_ingredient}_ingredient')">X</button>
         </div>
         `;
     document.getElementById('search_tags').innerHTML += search_tag;
@@ -86,7 +90,9 @@ function populate_searchbox(selected_ingredient){
 // Remove selected ingredient tag
 function remove_tag(selected_ingredient){
     document.getElementById(`${selected_ingredient}`).remove();
-    var uncheck_ele = `${selected_ingredient}_checkbox`;
+    var splitted_tag = selected_ingredient.split('_')
+    var tag_name = splitted_tag[0]
+    var uncheck_ele = `${tag_name}_checkbox`;
     document.getElementById(uncheck_ele).checked= false;
 }
 
@@ -95,11 +101,11 @@ function remove_all_tags(){
     document.getElementById('search_tags').innerHTML = '';
 }
 
-
-function populate_result(retrieved_tag){
-    result = retrieved_tag.results
-    console.log(result)
-}
+// Supposed to populate the card results, currently in apiConnect.js
+// function populate_result(retrieved_tag){
+//     result = retrieved_tag.results
+//     console.log(result)
+// }
 
 //[START] Using mutation observer to gather all the ingredients and send to spoontaculous API
 const targetNode = document.getElementById('search_tags');
@@ -107,12 +113,22 @@ const targetNode = document.getElementById('search_tags');
 const config = { attributes: true, childList: true, subtree: true };
     // Callback function to execute when mutations are observed
 const current_tag_nodes = function(mutationsList, observer) {
-    var ingredient_nodes = document.getElementsByClassName('search-tag');
-    var all_current_ingredients = []
-    for(ingredient_node of ingredient_nodes){
-        all_current_ingredients.push(ingredient_node.id.slice(0,-4));
+    var tag_nodes = document.getElementsByClassName('search-tag');
+    var all_current_tags = {
+        ingredient:[],
+        diet:[],
+        intolerance:[],
+        cuisine:[]
     }
-    call_api([all_current_ingredients,[],[],[]],'getIngredients');
+    for(tag_node of tag_nodes){
+
+        var splitted_tag = tag_node.id.split('_');
+        var tag_name = splitted_tag[0];
+        var tag_type = splitted_tag[1];
+        all_current_tags[tag_type].push(tag_name);
+    }
+    console.log(all_current_tags)
+    call_api(all_current_tags,'getIngredients');
 };
     // Create an observer instance linked to the callback function
 const observer = new MutationObserver(current_tag_nodes);

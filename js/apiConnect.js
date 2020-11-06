@@ -1,6 +1,6 @@
 
-var youtubeAPI='';
-var spoonAPI='c168142caa444879a3b6d6892ed09067';
+const youtubeAPI='';
+const spoonAPI='c168142caa444879a3b6d6892ed09067';
 
 
 /*function names for call_api
@@ -10,16 +10,13 @@ getDetail:get detail of a recipe gen its recipeid
 */
 function call_api(input,functionName) {
     // Step 1
+    console.log(input);
     var request = new XMLHttpRequest(); // Prep to make an HTTP request
 
     // Step 2
     request.onreadystatechange = function() {
         if( this.readyState == 4 && this.status == 200 ) {
-
-            actionFunction(this,functionName);
-            
-
-
+            actionFunction(this, functionName);
         }
     }
     // Step 3
@@ -33,49 +30,48 @@ function call_api(input,functionName) {
 function urlFunction(input,functionName) {
     if (functionName=="getIngredients"){
         var base="https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=10&apiKey=";
-        var spoonAPI = 'c168142caa444879a3b6d6892ed09067'
         var ingredients='';
         var diet='';
         var intolerances='';
         var cuisines=''
-        if (input[0].length >0){
+        if (input.ingredient.length>0){
             var ingredient;
-            console.log(input)
-            for (ingredient in input[0]){
-                if (ingredient==0){
-                    ingredients='&includeIngredients='+input[0][ingredient];
+            for (var index = 0; index<input.ingredient.length; index++){
+                if (index==0){
+                    ingredients='&includeIngredients='+input.ingredient[index];
                 }
                 else {
-                    ingredients=ingredients +","+ input[0][ingredient];
+                    ingredients += ","+ input.ingredient[index];
                 }
             }}
 
-        if (input[1].length >0){
-            diet="&diet="+input[1];
+        if (input.diet.length>0){
+            diet="&diet="+input.diet;
             }
 
-        if (input[2].length >0){
+        if (input.intolerance.length>0){
             var intolerance;
-            for (intolerance in input[2]){
-                if (intolerance==0){
-                    intolerances='&intolerances='+input[2][intolerance];
+            for (var index = 0; index<input.intolerance.length; index++){
+                if (index==0){
+                    intolerances='&intolerances='+input.intolerance[index];
                 }
                 else {
-                    intolerances=intolerances +","+ input[2][intolerance];
+                    intolerances += "," + input.intolerance[index];
                 }
             }}
     
-        if (input[3].length >0){
+        if (input.cuisine.length >0){
             var cuisine;
-            for (cuisine in input[3]){
-                if (cuisine==0){
-                    cuisines='&cuisine='+input[3][cuisine];
+            for (var index = 0; index<input.cuisine.length; index++){
+                if (index==0){
+                    cuisines='&cuisine='+input.cuisine[index];
                 }
                 else {
-                    cuisines=cuisines +","+ input[3][cuisine];
+                    cuisines += ","+ input.cuisine[index];
                 }
             }}
-
+        var final_url = base+spoonAPI+ingredients+diet+intolerances+cuisines;
+        console.log(final_url)
         return (base+spoonAPI+ingredients+diet+intolerances+cuisines)
     }
 
@@ -105,10 +101,11 @@ function actionFunction(xml,functionName){
         document.getElementById('card-columns').innerHTML='';
         var base='';
         var info = parseJSON.results;
-        console.log(info);
+        // console.log(info);
         var recipe;
+        console.log(info)
         for (recipe of info){
-            console.log(recipe);
+            // console.log(recipe);
             var card= `
                 <div class="card" style=" background-color: white">
                 <img class="card-img-top" src="${recipe.image}" alt="Card image cap">
@@ -135,6 +132,7 @@ function actionFunction(xml,functionName){
             base+=card;
             document.getElementById('card-columns').innerHTML=base;
         }
+
         
 
 
