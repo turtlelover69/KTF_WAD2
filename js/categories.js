@@ -62,7 +62,7 @@ function populate_checkbox(selected_item){
     if(document.getElementById(`${item}_checkbox`).checked){
         var search_tag = `
         <div class='search-tag' id='${item}_${type}'>
-            <h4>${item} </h4>
+            <h6 >${item} </h6>
             <button onclick="remove_tag('${item}_${type}')">X</button>
         </div>
         `;
