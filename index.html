@@ -18,80 +18,81 @@
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Righteous&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3b3172378c.js" crossorigin="anonymous"></script>
+    <script src="js/search.js"></script>
 
 </head>
 <body style = "background-color: #f4c2c2;">
-  <div class="container-fluid">
+    <div class="container-fluid">
 
-    <!-- <script type="text/javascript" src="js/dropdown.js"></script> -->
+        <!-- <script type="text/javascript" src="js/dropdown.js"></script> -->
 
-    <!-- CSS -->
-    <style>
-        .search-tag{
-            width:20px;
-            background-color: pink;
+        <!-- CSS -->
+        <style>
+            .search-tag{
+                width:20px;
+                background-color: pink;
 
-        }
-    </style>
+            }
+        </style>
 </head>
 
 <body style = "background-color: black"  onload='populate_categories()'>
     <!--Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light row" style ="background-color: #FF69B4; position: sticky">
-        <a class="navbar-brand" href="#">
-            <img src="images/small ktf logo.png" width="85" height="40" alt="" loading="lazy" style = "margin-left:100px">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <!--Search Bar-->
-        <form class="form-inline" style = "margin-left : 80px" id='search_box'>
-          <input id='ingredient_input' class="form-control mr-2 typeahead" type="search" placeholder="Find an Ingredient" aria-label="Search" style="width: 400px; font-family: 'Itim',cursive;">
-          <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
-        </form>
-
-        <!--Right navigation bar-->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto" style = "margin-right: 0px; font-family: 'Itim', cursive; font-size: large;">
-            <li class="nav-item active" >
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Browse all recipes</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">My Profile</a>
-          </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Settings</a>
-            </li>
-          </ul>
-        </div>
-
-    </nav>
-
-    <!--Selected ingredients-->
-    <div id="search_tags">
-
-    </div>
-
-
-    <!--Categories-->
-    <div id="categories">
-        <nav class="navbar navbar-expand-lg navbar-light row" style ="padding-top: 0; padding-left: 0; padding-right: 0;">
-            <ul id='navbar' class="navbar-nav col" style="font-family: 'Itim', cursive; font-size: medium; margin-right: 0; padding-right: 0;">
-
-            </ul>
-        </nav>
-    </div>
+    <div id="sticky_top" style='position: sticky'>
+        <nav class="navbar navbar-expand-lg navbar-light row" style ="background-color: #FF69B4; ">
+            <a class="navbar-brand" href="#">
+                <img src="images/small ktf logo.png" width="85" height="40" alt="" loading="lazy" style = "margin-left:100px">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!--Search Bar-->
+            <form class="form-inline" style = "margin-left : 80px" id='search_box'>
+              <input id='ingredient_input' class="form-control mr-2 typeahead" type="search" placeholder="Find an Ingredient" aria-label="Search" style="width: 400px;" font-family: "Itim,cursive;">
+              <button class="btn btn-outline-dark my-2 my-sm-0" type="submit" onclick="populate_searchbox()">Search</button>
+            </form>
     
+            <!--Right navigation bar-->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto" style = "margin-right: 0px; font-family: 'Itim', cursive; font-size: large;">
+                <li class="nav-item active" >
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Browse all recipes</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">My Profile</a>
+              </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Settings</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+    
+        <!--Selected ingredients-->
+        <div id="search_tags">
+    
+        </div>
+    
+    
+        <!--Categories-->
+        <div id="categories">
+            <nav class="navbar navbar-expand-lg navbar-light row" style ="padding-top: 0; padding-left: 0; padding-right: 0;">
+                <ul id='navbar' class="navbar-nav col" style="font-family: 'Itim', cursive; font-size: medium; margin-right: 0; padding-right: 0;">
+    
+                </ul>
+            </nav>
+        </div>
+    </div>
+
 
     <!--Display cards-->
     <div id = "card-columns" style=" width:80%; margin: auto;margin-top: 80px;">
 
     </div>
-
 
 
 <!-- <script>
