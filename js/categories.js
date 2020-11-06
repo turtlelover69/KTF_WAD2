@@ -24,12 +24,20 @@ function populate_categories()
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="${key}" style="background-color:${values.color}">
             `;
-
-        for(var ingredient of values.list){
+        
+        var type = values.name;
+        for(var selection of values.list){
+            var checkbox_str = selection + '_ingredient';
+            if(type == 'Allergies'){
+                var checkbox_str = selection + '_allergy';
+            }
+            else if(type == 'Cuisines'){
+                var checkbox_str = selection + '_cuisine';
+            }
             string += `
                 <a class="dropdown-item" href="#">
-                    <input type="checkbox" id= "${ingredient}_checkbox" onclick="populate_checkbox('${ingredient}')">
-                    ${ingredient}
+                    <input type="checkbox" id= "${selection}_checkbox" onclick="populate_checkbox('${checkbox_str}')">
+                    ${selection}
                 </a>
             `;
         }
@@ -43,18 +51,22 @@ function populate_categories()
 }
 
 // If it is checked, populate the selected ingredients at the checkbox, or remove when it is unchecked.
-function populate_checkbox(selected_ingredient){
-    if(document.getElementById(`${selected_ingredient}_checkbox`).checked){
+function populate_checkbox(selected_item){
+    item_list = selected_item.split('_');
+    var item = item_list[0];
+    var type = item_list[1];
+    if(document.getElementById(`${item}_checkbox`).checked){
         var search_tag = `
-        <div class='search-tag' id='${selected_ingredient}_tag'>
-            <h4>${selected_ingredient}  </h4>
-            <button onclick="remove_tag('${selected_ingredient}')">X</button>
+        <div class='search-tag' id='${item}_${type}'>
+            <h4>${item} </h4>
+            <button onclick="remove_tag('${item}')">X</button>
         </div>
         `;
+
         document.getElementById('search_tags').innerHTML += search_tag;
     }
     else{
-        remove_tag(selected_ingredient);
+        remove_tag(selected_item);
     }
 }
 
@@ -63,7 +75,7 @@ function populate_searchbox(selected_ingredient){
     // Remember to validate the input!!!
     var selected_ingredient = document.getElementById('ingredient_input').value
     var search_tag = `
-        <div class='search-tag' id='${selected_ingredient}_tag'>
+        <div class='search-tag ingredient_tag' id='${selected_ingredient}_tag'>
             <h4>${selected_ingredient}</h4>
             <button onclick="remove_tag('${selected_ingredient}')">X</button>
         </div>
@@ -73,7 +85,7 @@ function populate_searchbox(selected_ingredient){
 
 // Remove selected ingredient tag
 function remove_tag(selected_ingredient){
-    document.getElementById(`${selected_ingredient}_tag`).remove();
+    document.getElementById(`${selected_ingredient}`).remove();
     var uncheck_ele = `${selected_ingredient}_checkbox`;
     document.getElementById(uncheck_ele).checked= false;
 }
