@@ -87,6 +87,8 @@ function populate_searchbox(){
     document.getElementById('search_tags').innerHTML += search_tag;
 }
 
+
+
 // Remove selected ingredient tag
 function remove_tag(selected_ingredient){
     document.getElementById(`${selected_ingredient}`).remove();
