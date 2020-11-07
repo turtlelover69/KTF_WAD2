@@ -1,6 +1,6 @@
 
 const youtubeAPI='';
-const spoonAPI='5129bf8cf4cd49748f4ac7c6ac81408f';
+const spoonAPI='';
 
 
 /*function names for call_api
