@@ -14,3 +14,5 @@ $('#search_box .typeahead').typeahead(null, {
   name: 'ingredient_suggestion',
   source: ingredient_suggestion
 });
+
+
