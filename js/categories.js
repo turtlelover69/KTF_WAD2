@@ -38,8 +38,8 @@ function populate_categories()
                 var checkbox_str = selection + '_cuisine';
             }
             string += `
-                <a class="dropdown-item" href="#">
-                    <input type="checkbox" id= "${selection}_checkbox" onclick="populate_checkbox('${checkbox_str}')">
+                <a class="dropdown-item" href="#" onclick="switch_checkbox('${selection}_checkbox')">
+                    <input type="checkbox" id= "${selection}_checkbox" name='${checkbox_str}' onclick="populate_checkbox('${checkbox_str}')">
                     ${selection}
                 </a>
             `;
@@ -52,6 +52,19 @@ function populate_categories()
         document.getElementById('navbar').innerHTML = string;
     }
 }
+
+// Enable the entire section of the clickable category to check the checkbox
+function switch_checkbox(checkbox){
+    if(document.getElementById(checkbox).checked){
+        document.getElementById(checkbox).checked = false;
+    }
+    else{
+        document.getElementById(checkbox).checked = true;
+    }
+    populate_checkbox(document.getElementById(checkbox).name);
+}
+
+
 
 // If it is checked, populate the selected ingredients at the checkbox, or remove when it is unchecked.
 // item_ingredient, item_intolerance, item_cuisine
@@ -145,3 +158,4 @@ const observer = new MutationObserver(current_tag_nodes);
     // Start observing the target node for configured mutations
 observer.observe(targetNode, config);
 //[END] Using mutation observer to gather all the ingredients and send to spoontaculous API
+
