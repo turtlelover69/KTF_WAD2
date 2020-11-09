@@ -4,7 +4,7 @@
 // Function will loop through this array and create buttons on homepage.html
 // These buttons will display a popup(?) which contains all the ingredients under said category as checkboxes
 
-// [IN-PROGRESS] Left coloring of dropdown selection
+// [DONE] Dropdown selection
 // #2 Searchbar that has auto complete. Typing ch will suggest chicken, cheese, chinese bat, chloride etc.
 //  These suggestions will appear in a dropdown, which user can click to add.
 
@@ -14,7 +14,7 @@
 // The items can be removed also, as each ingredient will have a "x" to cancel it.
 
 
-// [IN-PROGRESS] Need to put it in rows of 3
+// [DONE] Need to put it in rows of 3
 // #4 Recipes that match the search will be displayed as cards, 3 per row. 1 on mobile. use card column.
 // card will show recipe name, image, link, youtube link (?), add to favourites button
 
@@ -43,6 +43,10 @@
 //[DONE]
 // #11 when the items are being submitted or selected from categories, add to the below selection box. 
 // then submit to the API call made by JC.
+
+
+//[In-progress]
+// #12 Implement a stack function to store the element. This allows the users to revert changes when the next item added does not add up.
 
 
 

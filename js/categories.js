@@ -19,7 +19,7 @@ function populate_categories()
         string += `
 
         <li class="nav-item dropdown col border border-dark" style = "background-image: url(${values.imageurl})">
-            <a class="nav-link dropdown-toggle d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+            <a class="nav-link dropdown-toggle d-flex justify-content-center" href="#" role="button" aria-haspopup="false" aria-expanded="true" >
                 <mark class = "border border-dark" style="background-color:${values.color}">${values.name}</mark>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="${key}" style="background-color:${values.color}">
@@ -130,11 +130,14 @@ const current_tag_nodes = function(mutationsList, observer) {
         all_current_tags[tag_type].push(tag_name);
     }
     console.log(all_current_tags)
-    //If there is no return
+
+
+    //If there is no return, clear the card columns
     if(all_current_tags.ingredient.length==0 && all_current_tags.diet.length==0 && all_current_tags.intolerance.length==0 && all_current_tags.cuisine.length==0){
         console.log('No recipes atm');
         document.getElementById("card-columns").innerHTML='';
     }
+    
     else{
         call_api(all_current_tags,'getIngredients');
     }
@@ -145,3 +148,5 @@ const observer = new MutationObserver(current_tag_nodes);
     // Start observing the target node for configured mutations
 observer.observe(targetNode, config);
 //[END] Using mutation observer to gather all the ingredients and send to spoontaculous API
+
+
