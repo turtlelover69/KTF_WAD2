@@ -142,9 +142,7 @@ function actionFunction(xml,functionName){
         var response_json = JSON.parse(this.responseText);
     }
 
-    else if (functionName=="getSummary"){
-        var response_json = JSON.parse(this.responseText);
-    }
+    
 
     else if (functionName=="getDetail"){
         var response_json = JSON.parse(this.responseText);
