@@ -9,17 +9,23 @@ const categories = {
     cuisinesList: {list:["african","american","british","cajun","caribbean","chinese","eastern european","european","french","german","greek","indian","irish","italian","japanese","jewish","korean","latin american","mediterranean","mexican","middle eastern","nordic","southern","spanish","thai","vietnamese"],name: "Cuisines", imageurl: "images/cuisines.jpg",color:"grey"} 
 }
 
+//Initialize temporary storage for selected tags
+sessionStorage.setItem("storage", JSON.stringify(
+    {ingredient:[],
+    diet:[],
+    intolerance:[],
+    cuisine:[]}));
 
 //This function dynamically populate all the categories(meats,vegetables,etc) and also include checkbox
 function populate_categories()
 {
-    var string
+    var string = "";
     // pls include checkboxes for this dropdown too
     for(const [key,values] of Object.entries(categories)){
         string += `
 
         <li class="nav-item dropdown col border border-dark" style = "background-image: url(${values.imageurl})">
-            <a class="nav-link dropdown-toggle d-flex justify-content-center" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+            <a class="nav-link dropdown-toggle d-flex justify-content-center" href="#" role="button" aria-haspopup="false" aria-expanded="true" >
                 <mark class = "border border-dark" style="background-color:${values.color}">${values.name}</mark>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="${key}" style="background-color:${values.color}">
@@ -38,8 +44,8 @@ function populate_categories()
                 var checkbox_str = selection + '_cuisine';
             }
             string += `
-                <a class="dropdown-item" href="#">
-                    <input type="checkbox" id= "${selection}_checkbox" onclick="populate_checkbox('${checkbox_str}')">
+                <a class="dropdown-item" href="#" onclick="switch_checkbox('${selection}_checkbox')">
+                    <input type="checkbox" id= "${selection}_checkbox" name='${checkbox_str}' onclick="populate_checkbox('${checkbox_str}')">
                     ${selection}
                 </a>
             `;
@@ -53,6 +59,19 @@ function populate_categories()
     }
 }
 
+// Enable the entire section of the clickable category to check the checkbox
+function switch_checkbox(checkbox){
+    if(document.getElementById(checkbox).checked){
+        document.getElementById(checkbox).checked = false;
+    }
+    else{
+        document.getElementById(checkbox).checked = true;
+    }
+    populate_checkbox(document.getElementById(checkbox).name);
+}
+
+
+
 // If it is checked, populate the selected ingredients at the checkbox, or remove when it is unchecked.
 // item_ingredient, item_intolerance, item_cuisine
 function populate_checkbox(selected_item){
@@ -62,7 +81,7 @@ function populate_checkbox(selected_item){
     if(document.getElementById(`${item}_checkbox`).checked){
         var search_tag = `
         <div class='search-tag' id='${item}_${type}'>
-            <h4>${item} </h4>
+            <h6 >${item} </h6>
             <button onclick="remove_tag('${item}_${type}')">X</button>
         </div>
         `;
@@ -74,8 +93,9 @@ function populate_checkbox(selected_item){
     }
 }
 
+
 // Retrieve value from search box
-function populate_searchbox(selected_ingredient){
+function populate_searchbox(){
     // Remember to validate the input!!!
     var selected_ingredient = document.getElementById('ingredient_input').value
     var search_tag = `
@@ -86,6 +106,8 @@ function populate_searchbox(selected_ingredient){
         `;
     document.getElementById('search_tags').innerHTML += search_tag;
 }
+
+
 
 // Remove selected ingredient tag
 function remove_tag(selected_ingredient){
@@ -107,6 +129,92 @@ function remove_all_tags(){
 //     console.log(result)
 // }
 
+
+// Retrieve the API call and populate the cards in index.html
+//getIngredients,youtubeLink,getSummary,getDetail
+function actionFunction(xml,functionName){
+    if (functionName=="getIngredients"){
+        var parseJSON = JSON.parse(xml.responseText);
+        document.getElementById('card-columns').innerHTML='';
+        var base='';
+        var recipe;
+        var info = parseJSON.results;
+        var temporary_storage = JSON.parse(sessionStorage.getItem("storage"));
+        if(temporary_storage.ingredient.length>1 && info.length==0){
+            no_result_page()
+        }
+
+        for(recipe of info){
+            var card= `
+                <div class="card col" style=" background-color: white">
+                    <img class="card-img-top " src="${recipe.image}" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title d-flex justify-content-center border border-dark">${recipe.title}</h5>
+                
+                            <div class= "d-flex justify-content-center">
+                                <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.readyInMinutes} min</div>
+                                <i class="fas fa-stopwatch" style="display: inline;"></i>
+                            </div>
+                    
+                            <div class= "d-flex justify-content-center">
+                                <div class="card-text" style="display: inline; margin-right: 10px;">${recipe.spoonacularScore} / 100</div>
+                                <i class="fas fa-star" style="display: inline;"></i>
+                            </div>
+                    
+                            <div class= "d-flex justify-content-center">
+                                <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.missedIngredientCount} missing ingredients</div>
+                                <i class="far fa-question-circle" style="display: inline;"></i>
+                            </div> 
+                        </div>
+                </div>
+            `;
+            base+=card;
+            document.getElementById('card-columns').innerHTML=base;
+        }
+        
+    }
+
+    else if (functionName=="youtubeLink"){
+        var response_json = JSON.parse(this.responseText);
+    }
+
+    else if (functionName=="getSummary"){
+        var response_json = JSON.parse(this.responseText);
+    }
+
+    else if (functionName=="getDetail"){
+        var response_json = JSON.parse(this.responseText);
+    }
+}
+
+//Page to display when there is no result
+function no_result_page(){
+    //Create a button that says "YES TAKE ME BACK!"
+    var return_template = `
+    <div id='error_page' style='text-align:center'>
+        <h1>Oops, there is no search result! Do you want to revert your changes?</h1>
+        <br>
+        <button type="button" class="btn btn-warning btn-outline-dark font-weight-bold btn-lg" onclick="no_result_action()">Yes! Take me back!!!</button>
+    </div>
+    `;
+
+    document.getElementById('error-msg').innerHTML = return_template;
+
+}
+
+function no_result_action(){
+    //Once clicked, call the temporary stack and pop the latest element
+    var temporary_storage = JSON.parse(sessionStorage.getItem("storage"));
+    var removed_tag = temporary_storage.ingredient.pop();
+    document.getElementById('error-msg').innerHTML = '';
+    remove_tag(`${removed_tag}_ingredient`);
+    //Then call the api again with the existing stack
+    sessionStorage.setItem("storage",JSON.stringify(temporary_storage));
+    call_api(temporary_storage,"getIngredients");
+    //Also remember to delete the apprioriate tag and uncheck the correct checkbox
+
+}
+
 //[START] Using mutation observer to gather all the ingredients and send to spoontaculous API
 const targetNode = document.getElementById('search_tags');
     // Options for the observer (which mutations to observe)
@@ -121,17 +229,32 @@ const current_tag_nodes = function(mutationsList, observer) {
         cuisine:[]
     }
     for(tag_node of tag_nodes){
-
         var splitted_tag = tag_node.id.split('_');
         var tag_name = splitted_tag[0];
         var tag_type = splitted_tag[1];
+        //Push into temporary storage to simulate stack operation later on
+        var temporary_storage = JSON.parse(sessionStorage.getItem("storage"));
         all_current_tags[tag_type].push(tag_name);
+        temporary_storage[tag_type].push(tag_name);
+        sessionStorage.setItem("storage", JSON.stringify(temporary_storage));
     }
     console.log(all_current_tags)
-    call_api(all_current_tags,'getIngredients');
+
+
+    //If there is no return, clear the card columns
+    if(all_current_tags.ingredient.length==0 && all_current_tags.diet.length==0 && all_current_tags.intolerance.length==0 && all_current_tags.cuisine.length==0){
+        console.log('No recipes atm');
+        document.getElementById("card-columns").innerHTML='';
+    }
+    
+    else{
+        call_api(all_current_tags,'getIngredients');
+    }
+
 };
     // Create an observer instance linked to the callback function
 const observer = new MutationObserver(current_tag_nodes);
     // Start observing the target node for configured mutations
 observer.observe(targetNode, config);
 //[END] Using mutation observer to gather all the ingredients and send to spoontaculous API
+

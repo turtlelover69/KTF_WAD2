@@ -20,13 +20,17 @@
     <script src="https://kit.fontawesome.com/3b3172378c.js" crossorigin="anonymous"></script>
 
 </head>
-<body style = "background-color: #f4c2c2;">
+<body>
   <div class="container-fluid">
 
     <!-- <script type="text/javascript" src="js/dropdown.js"></script> -->
 
     <!-- CSS -->
     <style>
+        body{
+            background-color: #f4c2c2;
+        }
+
         .search-tag{
             width:20px;
             background-color: pink;
@@ -69,19 +73,26 @@
         .tt-suggestion.tt-is-under-cursor { /* UPDATE: newer versions use .tt-suggestion.tt-cursor */
             color: #fff;
             background-color: #0097cf;
-
         }
 
         .tt-suggestion p {
             margin: 0;
         }
+
+        .dropdown:hover .dropdown-menu{
+            display: block;
+        }
+
+        .dropdown-menu{
+            margin-top: 0;
+        }
     </style>
 </head>
 
-<body style = "background-color: black"  onload='populate_categories()'>
+<body id="app" onload='populate_categories()'>
     <!--Navbar-->
     <div id="sticky_top" style='position: sticky'>
-      <nav class="navbar navbar-expand-lg navbar-light row" style ="background-color: #FF69B4; position: sticky">
+      <nav class="navbar navbar-expand-lg navbar-light row" style ="background-color: #FF69B4">
           <a class="navbar-brand" href="#">
               <img src="images/small ktf logo.png" width="85" height="40" alt="" loading="lazy" style = "margin-left:100px">
           </a>
@@ -92,7 +103,7 @@
           <!--Search Bar-->
           <form class="form-inline" style = "margin-left : 80px" id='search_box'>
             <input id='ingredient_input' class="form-control mr-2 typeahead" type="search" placeholder="Find an Ingredient" aria-label="Search" style="width: 400px; font-family: 'Itim',cursive;">
-            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"  onclick="populate_searchbox()">Search</button>
+            <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"  onClick="populate_searchbox();return false">Add</button>
           </form>
 
           <!--Right navigation bar-->
@@ -116,39 +127,38 @@
       </nav>
 
       <!--Selected ingredients-->
-      <div id="search_tags">
+      
+      <div class = "container" style= "margin-left:23%; width: 35%">
+        <div id="search_tags" style="font-family: 'Itim',cursive">
 
+        </div>
       </div>
-
+   
 
       <!--Categories-->
       <div id="categories">
           <nav class="navbar navbar-expand-lg navbar-light row" style ="padding-top: 0; padding-left: 0; padding-right: 0;">
               <ul id='navbar' class="navbar-nav col" style="font-family: 'Itim', cursive; font-size: medium; margin-right: 0; padding-right: 0;">
-
+                
               </ul>
           </nav>
       </div>
     </div>
 
     <!--Display cards-->
-    <div id = "card-columns" style=" width:80%; margin: auto;margin-top: 80px;">
+    <div class = "row">
+        <div class = "card-columns" id = "card-columns"  style=" width:80%; margin: auto;margin-top: 80px;">
 
+        </div>
     </div>
 
+    <!--Error Message-->
+    <div id = "error-msg" class='container d-flex justify-content-center'>
+
+    </div>
+        
 
 
-<!-- <script>
-    // var app = new Vue({
-    //     el: '#navbar',
-    //     data: {
-    //         category:
-    //     },
-    //     methods: {
-
-    //     }
-    // })
-</script> -->
 
 <script src="js/apiConnect.js"></script>
 <script src="js/categories.js"></script>
