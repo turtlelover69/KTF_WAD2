@@ -33,6 +33,21 @@
 
 <body style = "background-color: black"  onload='populate_categories()'>
     <!--Navbar-->
+    <script>
+      function addsession(id){
+        sessionStorage.setItem("recipeID", id);
+      }
+
+      function getsession(){
+        console.log(sessionStorage.getItem("recipeID"));
+      } 
+
+      function populateRecipe(){
+        let id=sessionStorage.getItem("recipeID");
+        call_api(id,"getDetail");
+      }
+    </script>
+
     <div id="sticky_top" style='position: sticky'>
       <nav class="navbar navbar-expand-lg navbar-light row" style ="background-color: #FF69B4; position: sticky">
           <a class="navbar-brand" href="#">
@@ -64,24 +79,28 @@
       </nav>
 
       <!-- Main page container -->
-      <div class="container-fluid">
+      <div class="container-fluid row" onload="populateRecipe()">
+
+        <!-- everything besides video-->
+        <div class="container row col-9">
 
         <!-- image+summary -->
         <div class="container-fluid row">
 
             <!-- image -->
           <div class="container col-5">
-            <img src='https://spoonacular.com/recipeImages/955152-556x370.jpg' class="img-fluid" alt="">
+            <img id="recipeImage" src='https://spoonacular.com/recipeImages/955152-556x370.jpg' class="img-fluid" alt="">
           </div>
 
           <!-- summary -->
           <div class="container col-7">
-            <h1 id='recipeTitle'>Recipe title</h1>
-            <div>Ingrediant tag</div>
-            <div>summary</div>
-
-            <div>serves 4 adult Cooks in 15 minutes </div>
+            <h1 id="recipeTitle">Recipe title</h1>
+            <div id="recipeDiet">
+            </div>
+            <div id="recipeSummary">summary</div>
+            <div id="recipeServing">serves 4 adult Cooks in 15 minutes </div>
             <div class="container">
+              NUTRITION PER SERVING
                 <table class="table container-fluid" style='border:solid;'>
                     <thead>
                       <tr>
@@ -119,17 +138,17 @@
                     
                     </tbody>
                   </table>
-
+                OF AN ADULT'S REFERENCE INTAKE
             </div>
           </div>
         </div>
 
         <div class="container-fluid row">
         <!-- ingredients -->
-          <div class="container col-4">
+          <div class="container col-5">
               <h2>Ingredients</h2>
-              <div id='recipeIngredients'>
-                <ul>
+              <div>
+                <ul  id="recipeIngredients">
 
                 </ul>
               </div>
@@ -138,17 +157,28 @@
 
 
         <!-- steps -->
-          <div class="container col-8">
+          <div class="container col-7">
               <h2>Instructions</h2>
-              <div id='recipeInstructions'>
-                <ul>
+              <div>
+                <ul id="recipeInstructions">
 
                 </ul>
               </div>
 
-            
+  
             </div>
         </div>
+        
+
+      </div>
+
+      <!-- youtube video-->
+      <div class="container col-2">
+        Related Video
+
+        <img src='https://spoonacular.com/recipeImages/955152-556x370.jpg' class="img-fluid" alt="">
+        Video Title
+      </div>
 
       </div>
     </div>
