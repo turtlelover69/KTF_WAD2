@@ -1,5 +1,6 @@
+
 const youtubeAPI='';
-const spoonAPI='c168142caa444879a3b6d6892ed09067';
+const spoonAPI='5129bf8cf4cd49748f4ac7c6ac81408f';
 
 
 /*function names for call_api
@@ -28,6 +29,8 @@ function call_api(input,functionName) {
 
 function urlFunction(input,functionName) {
     if (functionName=="getIngredients"){
+        var temporary_storage = JSON.parse(sessionStorage.getItem("storage"));
+        console.log(temporary_storage)
         var base="https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=10&apiKey=";
         var ingredients='';
         var diet='';
@@ -68,9 +71,7 @@ function urlFunction(input,functionName) {
                 else {
                     cuisines += ","+ input.cuisine[index];
                 }
-            }
-        }
-
+            }}
         var final_url = base+spoonAPI+ingredients+diet+intolerances+cuisines;
         console.log(final_url)
         return (base+spoonAPI+ingredients+diet+intolerances+cuisines)
@@ -85,17 +86,12 @@ function urlFunction(input,functionName) {
             base=base + "+" + word;
         }
         
-        return base+end+youtubeAPI;
+        return base+end+youtubeAPI
     }
 
     else if (functionName=="getDetail"){
         var base="https://api.spoonacular.com/recipes/";
         var end="/information?includeNutrition=true&apiKey=";
-        return base+input+end+spoonAPI;
+        return base+input+end+spoonAPI
     }
 }
-
-
-
-
-

@@ -17,76 +17,9 @@
     <script src='bower_components/typeahead.js/dist/typeahead.bundle.min.js'></script>
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Righteous&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/3b3172378c.js" crossorigin="anonymous"></script>
 
-</head>
-<body>
-  <div class="container-fluid">
-
-    <!-- <script type="text/javascript" src="js/dropdown.js"></script> -->
-
-    <!-- CSS -->
-    <style>
-        body{
-            background-color: #f4c2c2;
-        }
-
-        .search-tag{
-            width:20px;
-            background-color: pink;
-
-        }
-        .tt-input, .tt-hint {
-            width: 396px;
-            height: 30px;
-            padding: 8px 12px;
-            line-height: 30px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            outline: none;
-        }
-
-        .tt-query { /* UPDATE: newer versions use tt-input instead of tt-query */
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-        }
-
-        .tt-hint {
-            color: #999;
-        }
-
-        .tt-menu { /* UPDATE: newer versions use tt-menu instead of tt-dropdown-menu */
-            width: 422px;
-            margin-top: 12px;
-            padding: 8px 0;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            box-shadow: 0 5px 10px rgba(0,0,0,.2);
-        }
-
-        .tt-suggestion {
-            padding: 3px 20px;
-            line-height: 24px;
-        }
-
-        .tt-suggestion.tt-is-under-cursor { /* UPDATE: newer versions use .tt-suggestion.tt-cursor */
-            color: #fff;
-            background-color: #0097cf;
-        }
-
-        .tt-suggestion p {
-            margin: 0;
-        }
-
-        .dropdown:hover .dropdown-menu{
-            display: block;
-        }
-
-        .dropdown-menu{
-            margin-top: 0;
-        }
-    </style>
 </head>
 
 <body id="app" onload='populate_categories()'>
@@ -137,7 +70,7 @@
 
       <!--Categories-->
       <div id="categories">
-          <nav class="navbar navbar-expand-lg navbar-light row" style ="padding-top: 0; padding-left: 0; padding-right: 0;">
+          <nav class="navbar navbar-expand-lg navbar-light row" style ="padding-top: 0; padding-left: 0; padding-right: 0; position:relative; z-index: 999;">
               <ul id='navbar' class="navbar-nav col" style="font-family: 'Itim', cursive; font-size: medium; margin-right: 0; padding-right: 0;">
                 
               </ul>
