@@ -1,5 +1,7 @@
 body{
     background-color: #f4c2c2;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .search-tag{
@@ -7,8 +9,9 @@ body{
     background-color: pink;
 }
 
-.nav{
-    overflow-y: visible;
+#card-columns{
+    position: relative;
+    z-index:-1;
 }
 
 .tt-input, .tt-hint {

@@ -30,7 +30,6 @@ function call_api(input,functionName) {
 function urlFunction(input,functionName) {
     if (functionName=="getIngredients"){
         var temporary_storage = JSON.parse(sessionStorage.getItem("storage"));
-        console.log(temporary_storage)
         var base="https://api.spoonacular.com/recipes/complexSearch?addRecipeInformation=true&number=10&apiKey=";
         var ingredients='';
         var diet='';

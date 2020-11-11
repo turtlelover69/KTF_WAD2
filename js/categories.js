@@ -5,8 +5,8 @@ const categories = {
     dairylist : {list:["butter","cheese","cream","milk","yogurt"],name:"Dairy",imageurl:"images/dairy.jpg",color: "beige"},
     grainlist : {list:["barley","bread","oat","pasta","rice","wheat"],name:"Grains",imageurl:"images/grains.jpg",color:"yellow"},
     dietList: {list:["gluten free","ketogenic","vegetarian","lacto-vegetarian","ovo-vegetarian","vegan","pescetarian","paleo","primal","whole30"],name:"Diets",imageurl:"images/diet.jpg",color:"orange"},
-    intolerancesList: {list:["dairy","egg","gluten","grain","peanut","seafood","sesame","shellfish","soy","sulfite","tree nut","wheat"],name:"Allergies", imageurl: "images/intolerances.jpg",color: "pink"},
-    cuisinesList: {list:["african","american","british","cajun","caribbean","chinese","eastern european","european","french","german","greek","indian","irish","italian","japanese","jewish","korean","latin american","mediterranean","mexican","middle eastern","nordic","southern","spanish","thai","vietnamese"],name: "Cuisines", imageurl: "images/cuisines.jpg",color:"grey"} 
+    cuisinesList: {list:["african","american","british","cajun","caribbean","chinese","eastern european","european","french","german","greek","indian","irish","italian","japanese","jewish","korean","latin american","mediterranean","mexican","middle eastern","nordic","southern","spanish","thai","vietnamese"],name: "Cuisines", imageurl: "images/cuisines.jpg",color:"grey"},
+    intolerancesList: {list:["dairy","egg","gluten","grain","peanut","seafood","sesame","shellfish","soy","sulfite","tree nut","wheat"],name:"Allergies", imageurl: "images/intolerances.jpg",color: "pink"} 
 }
 
 //Initialize temporary storage for selected tags
@@ -80,9 +80,9 @@ function populate_checkbox(selected_item){
     var type = item_list[1];
     if(document.getElementById(`${item}_checkbox`).checked){
         var search_tag = `
-        <div class='search-tag' id='${item}_${type}'>
-            <h6 >${item} </h6>
-            <button onclick="remove_tag('${item}_${type}')">X</button>
+        <div class='search-tag d-inline mb-2 mr-2 p-1' id='${item}_${type}'>
+            <span>${item}</span>
+            <span class="text-white" onclick="remove_tag('${item}_${type}')">x</span>
         </div>
         `;
 
@@ -99,9 +99,9 @@ function populate_searchbox(){
     // Remember to validate the input!!!
     var selected_ingredient = document.getElementById('ingredient_input').value
     var search_tag = `
-        <div class='search-tag' id='${selected_ingredient}_ingredient'>
-            <h4>${selected_ingredient}</h4>
-            <button type="button" class='btn btn-danger btn-sm' onclick="remove_tag('${selected_ingredient}_ingredient')">X</button>
+        <div class='search-tag d-inline mb-2 mr-2 p-1' id='${selected_ingredient}_ingredient'>
+            <span>${selected_ingredient}</span>
+            <span class="text-white" onclick="remove_tag('${selected_ingredient}_ingredient')">x</span>
         </div>
     `;
     document.getElementById('search_tags').innerHTML += search_tag;
@@ -135,6 +135,7 @@ function remove_all_tags(){
 function actionFunction(xml,functionName){
     if (functionName=="getIngredients"){
         var parseJSON = JSON.parse(xml.responseText);
+        console.log(parseJSON)
         document.getElementById('card-columns').innerHTML='';
         var base='';
         var recipe;
@@ -228,16 +229,20 @@ const current_tag_nodes = function(mutationsList, observer) {
         intolerance:[],
         cuisine:[]
     }
+    var temporary_storage = JSON.parse(sessionStorage.getItem("storage"));
+    temporary_storage = {ingredient:[],
+        diet:[],
+        intolerance:[],
+        cuisine:[]};
     for(tag_node of tag_nodes){
         var splitted_tag = tag_node.id.split('_');
         var tag_name = splitted_tag[0];
         var tag_type = splitted_tag[1];
         //Push into temporary storage to simulate stack operation later on
-        var temporary_storage = JSON.parse(sessionStorage.getItem("storage"));
         all_current_tags[tag_type].push(tag_name);
         temporary_storage[tag_type].push(tag_name);
-        sessionStorage.setItem("storage", JSON.stringify(temporary_storage));
     }
+    sessionStorage.setItem("storage", JSON.stringify(temporary_storage));
     console.log(all_current_tags)
 
 
