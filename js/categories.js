@@ -101,9 +101,9 @@ function populate_searchbox(){
     var search_tag = `
         <div class='search-tag' id='${selected_ingredient}_ingredient'>
             <h4>${selected_ingredient}</h4>
-            <button onclick="remove_tag('${selected_ingredient}_ingredient')">X</button>
+            <button type="button" class='btn btn-danger btn-sm' onclick="remove_tag('${selected_ingredient}_ingredient')">X</button>
         </div>
-        `;
+    `;
     document.getElementById('search_tags').innerHTML += search_tag;
 }
 
@@ -112,8 +112,8 @@ function populate_searchbox(){
 // Remove selected ingredient tag
 function remove_tag(selected_ingredient){
     document.getElementById(`${selected_ingredient}`).remove();
-    var splitted_tag = selected_ingredient.split('_')
-    var tag_name = splitted_tag[0]
+    var splitted_tag = selected_ingredient.split('_');
+    var tag_name = splitted_tag[0];
     var uncheck_ele = `${tag_name}_checkbox`;
     document.getElementById(uncheck_ele).checked= false;
 }

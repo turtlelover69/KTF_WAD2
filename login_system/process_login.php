@@ -40,17 +40,5 @@
             echo $error. "<br>";
         }
     }
-    // $hashed = $dao->getHashedPassword($username);
-
-    // $status = password_verify($password,$hashed);
-    // if($status) {
-    //     session_start();
-    //     $_SESSION["user"] = $username;
-    //     echo "Successful Login";
-    // }
-    // else {
-    //     session_start();
-    //     $_SESSION["error"] = "Failed Login";
-    //     header("Location: login.php?username=$username");
-    // }
+    
 ?>
