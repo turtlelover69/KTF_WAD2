@@ -82,7 +82,7 @@ function populate_checkbox(selected_item){
         var search_tag = `
         <div class='search-tag d-inline mb-2 mr-2 p-1' id='${item}_${type}'>
             <span>${item}</span>
-            <span class="text-white" onclick="remove_tag('${item}_${type}')">x</span>
+            <span class="x text-white" onclick="remove_tag('${item}_${type}')">x</span>
         </div>
         `;
 
@@ -101,7 +101,7 @@ function populate_searchbox(){
     var search_tag = `
         <div class='search-tag d-inline mb-2 mr-2 p-1' id='${selected_ingredient}_ingredient'>
             <span>${selected_ingredient}</span>
-            <span class="text-white" onclick="remove_tag('${selected_ingredient}_ingredient')">x</span>
+            <span class="x text-white" onclick="remove_tag('${selected_ingredient}_ingredient')">x</span>
         </div>
     `;
     document.getElementById('search_tags').innerHTML += search_tag;

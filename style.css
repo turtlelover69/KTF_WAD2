@@ -14,6 +14,10 @@ body{
     z-index:-1;
 }
 
+.x{
+    cursor: pointer;
+}
+
 .tt-input, .tt-hint {
     width: 396px;
     height: 30px;
@@ -33,6 +37,7 @@ body{
 }
 
 .tt-menu { /* UPDATE: newer versions use tt-menu instead of tt-dropdown-menu */
+
     width: 422px;
     margin-top: 12px;
     padding: 8px 0;
@@ -44,8 +49,13 @@ body{
 }
 
 .tt-suggestion {
+    cursor: pointer;
     padding: 3px 20px;
     line-height: 24px;
+}
+
+.tt-suggestion:hover {
+    background-color: lightpink;
 }
 
 .tt-suggestion.tt-is-under-cursor { /* UPDATE: newer versions use .tt-suggestion.tt-cursor */

@@ -27,6 +27,7 @@
 // #6 Login and profile details
 // Use php?
 
+//[IN-PROGRESS]
 // #7 Dashboard
 // Global variables that are constantly stored and updated in table. dashboard draws data from this table to display.
 
@@ -45,15 +46,15 @@
 // then submit to the API call made by JC.
 
 
-//[In-progress]
+//[DONE]
 // #12 Implement a stack function to store the element. This allows the users to revert changes when the next item added does not add up.
 
 
 
 //Bug encountered
-// #1 When added barley -> bread -> remove bread. Barley result is gone. Followed by remove bread. The error message still persist
-// #2 For the tags created below search box, fix the css issue and also shrink the size of the tag
-// #3 When mouse hover to cuisine, there is a scroll bar pops out on the side.
+// #1 When added barley -> bread -> remove bread. Barley result is gone. Followed by remove bread. The error message still persist [api needs to wait]
+// #2 For the tags created below search box, fix the css issue and also shrink the size of the tag [fixed]
+// #3 When mouse hover to cuisine, there is a scroll bar pops out on the side. [fixed]
 
 
 
