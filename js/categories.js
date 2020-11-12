@@ -147,7 +147,7 @@ function actionFunction(xml,functionName){
 
         for(recipe of info){
             var card= `
-                <div class="card col" style=" background-color: white">
+                <div class="card col" style=" background-color: white" onclick="recipeSet(${recipe.id});window.open('recipe.html', '_blank');">
                     <img class="card-img-top " src="${recipe.image}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title d-flex justify-content-center border border-dark">${recipe.title}</h5>
@@ -176,15 +176,49 @@ function actionFunction(xml,functionName){
     }
 
     else if (functionName=="youtubeLink"){
-        var response_json = JSON.parse(this.responseText);
+        var parseJSON = JSON.parse(xml.responseText);
     }
 
     else if (functionName=="getSummary"){
-        var response_json = JSON.parse(this.responseText);
+        var parseJSON = JSON.parse(xml.responseText);
     }
 
     else if (functionName=="getDetail"){
-        var response_json = JSON.parse(this.responseText);
+        var parseJSON = JSON.parse(xml.responseText);
+        document.getElementById("recipeImage").setAttribute("src",parseJSON.image);
+        document.getElementById("recipeTitle").innerText= parseJSON.title;
+
+        let dietpill="";
+        let diets=parseJSON.diets;
+        let diet;
+        for (diet of diets){
+            dietpill+=`<span class="badge badge-pill badge-info">${diet}</span>`;
+        };
+        document.getElementById("recipeDiet").innerHTML=dietpill;
+
+        document.getElementById("recipeSummary").innerText= parseJSON.summary;
+        document.getElementById("recipeServing").innerHTML= `<br>SERVES ${parseJSON.servings} ADULTS</br><br>COOKS IN ${parseJSON.readyInMinutes} MINUTES </br>`;
+
+        var nutritionBox=[];
+        let nutrition;
+
+        let ingredient;
+        let ingredientList="";
+        for (ingredient of parseJSON.extendedIngredients){
+            ingredientList+=`<li>${ingredient.name}: ${ingredient.amount} ${ingredient.unit}</li>`;
+        };
+        document.getElementById("recipeIngredients").innerHTML=ingredientList;
+
+        let instruction;
+        let instructions="";
+        for (instruction of parseJSON.analyzedInstructions[0].steps){
+            instructions+=`<li>${instruction.step}</li>`;
+        };
+        document.getElementById("recipeInstructions").innerHTML=ingredientList;
+
+        
+        
+
     }
 }
 
@@ -262,4 +296,11 @@ const observer = new MutationObserver(current_tag_nodes);
     // Start observing the target node for configured mutations
 observer.observe(targetNode, config);
 //[END] Using mutation observer to gather all the ingredients and send to spoontaculous API
+
+//add recipeID to session memory to be later retrieved on new page
+//takes in recipe id from API, set key to recipeID, value to recipe id 
+function recipeSet(id){
+    sessionStorage.setItem("recipeID", id);
+};
+
 
