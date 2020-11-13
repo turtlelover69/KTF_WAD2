@@ -35,14 +35,14 @@
           
           <!--Search Bar-->
           <div class="container row" style="width:40%; margin-left : 80px">
-              <div class="row" >
+              <div class="row">
                 <form class="form-inline col-12 mb-2"  id='search_box'>
                     <input id='ingredient_input' class="form-control mr-2 typeahead" type="search" placeholder="Find an Ingredient" aria-label="Search" style=" font-family: 'Itim',cursive;">
                     <button class="btn btn-sm btn-outline-dark my-2 my-sm-0" type="submit"  onClick="populate_searchbox();return false">Add</button>
                   </form>
         
                   <!--Selected ingredients-->  
-                  <div class = "d-inline col-12" >
+                  <div class = "d-inline col-12" style="word-wrap:break-word">
                       <div id="search_tags" style="font-family: 'Itim',cursive">
         
                       </div>
@@ -77,9 +77,14 @@
       <!--Categories-->
       <div id="categories">
           <nav class="navbar navbar-expand-lg navbar-light row" style ="padding-top: 0; padding-left: 0; padding-right: 0; ">
-              <ul id='navbar' class="navbar-nav col" style="font-family: 'Itim', cursive; font-size: medium; margin-right: 0; padding-right: 0;">
-                
-              </ul>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoryNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="categoryNavDropdown">
+                <ul id='navbar' class="navbar-nav col" style="font-family: 'Itim', cursive; font-size: medium; margin-right: 0; padding-right: 0;">
+            
+                </ul>
+            </div>
           </nav>
       </div>
     </div>
