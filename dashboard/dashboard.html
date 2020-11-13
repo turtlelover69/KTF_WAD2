@@ -1,46 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="./dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-</head>
-<body>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Profile</title>
 
-    <input type="checkbox" id="check">
-    <!--header area start-->
-    <header>
-        <label for="check">
-            <i class="fas fa-bars" id="sidebar_btn"></i>
-        </label>
-        <div class="left_area">
-            <h3>Kyung <span>TauFoo</span></h3>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <!-- Javascript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://kit.fontawesome.com/3b3172378c.js" crossorigin="anonymous"></script>
+
+  </head>
+
+        <!--Navbar-->
+        <div id="sticky_top" style='position: sticky'>
+          <nav class="navbar navbar-expand-lg navbar-light row" style ="background-color: #FF69B4">
+              <a class="navbar-brand" href="../index.html">
+                  <img src="../images/small ktf logo.png" width="85" height="40" alt="" loading="lazy" style = "margin-left:100px">
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            
+              <!--Right navigation bar-->
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto" style = "margin-right: 0px; font-family: 'Itim', cursive; font-size: small;">
+                  <li class="nav-item active" >
+                    <a class="nav-link" href="../index.html">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Browse all recipes</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                  </li>
+                </ul>
+              </div>
+          </nav>
+
+            <!-- Personal Details on Left Sidebar -->
+                <div class="sidebar">
+                    <center>
+                        <img src="./ultimateweeb.PNG" style="margin: 10px" alt="" class="profile_image">
+                        <h4 style="font-family: 'Itim', cursive">Gordon Ramsay</h4>
+                    </center>
+
+                    <div class="mb-2">
+                        <ul class="list-unstyled"  style="font-family: 'Itim', cursive">
+
+    
+                            <li class="particulars">
+                                <span class="w-25 text-black font-weight-normal">Dietary Preference: </span>
+                                <label class="media-body">Nil</label>
+                            </li>
+    
+                            <li class="particulars">
+                                <span class="w-25 text-black font-weight-normal">Height: </span>
+                                <label class="media-body">166cm</label>
+                            </li>
+    
+                            <li class="particulars">
+                                <span class="w-25 text-black font-weight-normal">Weight: </span>
+                                <label class="media-body">50kg</label>
+                            </li>
+                            <li class="particulars">
+                                <span class="w-25 text-black font-weight-normal">BMI:</span>
+                                <label class="media-body">20</label>
+                            </li>
+    
+                            <li class="particulars">
+                                <span class="w-25 text-black font-weight-normal">Email: </span>
+                                <label class="media-body">turtlelover123@ktf.com</label>
+                            </li>
+                        </ul>
+                    </div>
+                    </div>
+
+        <!--Display cards-->
+        <div class = "row">
+            <div class = "card-columns" id = "card-columns"  style=" width:80%; margin: auto;margin-top: 80px;">
+    
+            </div>
         </div>
-        <div class="right_area">
-            <a href="#" class="logout_btn">Logout</a>
-        </div>
-    </header>
-    <!--header area end-->
 
-    <!--side bar start-->
-    <div class="sidebar">
-        <center>
-            <img src="./ultimateweeb.PNG" alt="" class="profile_image">
-            <h4>Ultimate Weeb</h4>
-        </center>
-        <a href="#"><i class="fas fa-desktop"></i><span>Dashboard</span></a>
-        <a href="#"><i class="fas fa-cogs"></i><span>Components</span></a>
-        <a href="#"><i class="fas fa-table"></i><span>Tables</span></a>
-        <a href="#"><i class="fas fa-th"></i><span>Forms</span></a>
-        <a href="#"><i class="fas fa-info-circle"></i><span>About</span></a>
-        <a href="#"><i class="fas fa-sliders-h"></i><span>Settings</span></a>
-    </div>
-    <!--side bar end-->
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
-    <div class="content">
-
-    </div>
-</body>
+    
+  </body>
 </html>

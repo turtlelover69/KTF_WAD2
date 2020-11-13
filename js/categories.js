@@ -150,7 +150,7 @@ function actionFunction(xml,functionName){
                 <div class="card col" style=" background-color: white" onclick="recipeSet(${recipe.id});window.open('recipe.html', '_blank');">
                     <img class="card-img-top " src="${recipe.image}" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title d-flex justify-content-center border border-dark">${recipe.title}</h5>
+                            <h5 class="card-title d-flex justify-content-center border border-dark p-1">${recipe.title}</h5>
                 
                             <div class= "d-flex justify-content-center">
                                 <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.readyInMinutes} min</div>
