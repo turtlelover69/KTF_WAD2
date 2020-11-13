@@ -4,7 +4,7 @@ class ConnectionManager {
         $servername = 'localhost';
         $dbname = 'ktf_users';
         $username = 'root';
-        $password = '';
+        $password = 'root';
         
         $dsn  = "mysql:host=$servername;dbname=$dbname";
         $pdo = new PDO($dsn, $username, $password);  

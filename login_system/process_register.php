@@ -4,6 +4,8 @@
     $email = $_POST["email"];
     $password1 = $_POST["password1"];
     $password2 = $_POST["password2"];
+    $height = $_POST["height"];
+    $weight = $_POST["weight"];
     $errors = array();
 
     $dao = new UserDAO();
@@ -32,12 +34,15 @@
     
 	if (empty($password1)) { 
 		array_push($errors, "Password is required"); 
-	}
+    }
+    if ($height > 300 || $height < 50) {
+        array_push($errors, "Height is not humanly possible!");
+    }
 
     if (empty($errors)){
         $hashed = password_hash($password1, PASSWORD_DEFAULT);
 
-        $user = new User($username, $email, $hashed);
+        $user = new User($username, $email, $hashed, $height, $weight);
         $dao = new UserDAO();
         $status = $dao->add($user);
         

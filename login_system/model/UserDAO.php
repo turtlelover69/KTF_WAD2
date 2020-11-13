@@ -12,12 +12,17 @@
             $username = $user->getUsername();
             $hashed_password = $user->getHashedPassword();
             $email = $user->getEmail();
+            $height = $user->getHeight();
+            $weight = $user->getWeight();
             
-            $sql = "insert into users (username, email, hashed_password) values (:username, :email, :hashed_password)";
+            $sql = "insert into users (username, email, hashed_password, height, weight) values (:username, :email, :hashed_password, :height, :weight)";
             $stmt = $pdo->prepare($sql);
             $stmt->bindParam(":username",$username, PDO::PARAM_STR);
             $stmt->bindParam(":hashed_password",$hashed_password, PDO::PARAM_STR);
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+            $stmt->bindParam(":height", $height, PDO::PARAM_INT);
+            $stmt->bindParam(":weight",$weight, PDO::PARAM_INT);
+            
             $status = $stmt->execute();
 
             $stmt->closeCursor();
@@ -98,5 +103,6 @@
 
             return $exist;
         }
+        
     }
 ?>

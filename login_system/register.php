@@ -26,6 +26,14 @@
 		<input type="password" name="password2">
 	</div>
 	<div class="input-group">
+		<label>Height (cm)</label>
+		<input type="number" name="height">
+	</div>
+	<div class="input-group">
+		<label>Weight (kg)</label>
+		<input type="number" name="weight">
+	</div>
+	<div class="input-group">
 		<button type="submit" class="btn" name="register_btn">Register</button>
 	</div>
 	<p>
