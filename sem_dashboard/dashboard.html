@@ -50,11 +50,11 @@
             <!-- Personal Details on Left Sidebar -->
                 <div class="sidebar">
                     <center>
-                        <img src="./ultimateweeb.PNG" style="margin: 10px" alt="" class="profile_image">
-                        <h4 style="font-family: 'Itim', cursive">Gordon Ramsay</h4>
+                        <img src="../images/sakura.png" style="margin: 10px" alt="" class="profile_image">
+                        <h4 style="font-family: 'Itim', cursive">Sakura</h4>
                     </center>
 
-                    <div class="mb-2">
+                    <div class="mb-2" style="font-family: 'Itim', cursive; font-size: medium;">
                         <ul class="list-unstyled"  style="font-family: 'Itim', cursive">
 
     
@@ -82,9 +82,39 @@
                                 <label class="media-body">turtlelover123@ktf.com</label>
                             </li>
                         </ul>
+                        <br>
+
+                        <center>
+                          <h4>Presets</h4>
+                        </center>
+                        
+                        <form method="POST" action="process_dashboard.php">
+                          <div class="form-group">
+                            <label for="diet">Diet</label>
+                            <input type="text" name="diet" class="form-control" id="diet">
+                            
+                          </div>
+                          <div class="form-group">
+                            <label for="cuisine">Cuisine</label>
+                            <input type="text" name="cuisine" class="form-control" id="cuisine">
+                          </div>
+                          <div class="form-group">
+                            <label for="allergy">Allergy</label>
+                            <input type="text" name="allergy" class="form-control" id="allergy">
+                          </div>
+                          
+                          <button type="submit" class="btn btn-warning">Save</button><br>
+                    
+                         
+                        </form>
+                        </div>
                     </div>
                     </div>
 
+                    <div class="container content" style="font-family: 'Itim', cursive; font-size: medium;">
+
+                        <h1>Saved Recipes</h1>
+                    </div>
         <!--Display cards-->
         <div class = "row">
             <div class = "card-columns" id = "card-columns"  style=" width:80%; margin: auto;margin-top: 80px;">

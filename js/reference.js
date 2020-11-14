@@ -47,11 +47,12 @@
 //[DONE]
 // #12 Implement a stack function to store the element. This allows the users to revert changes when the next item added does not add up.
 
-
-// #13 Create a sign up pop up page
+//[DONE]
+// #13 Create a sign up/login page
 
 // #14 Link PHP to index.html
 
+//[Abolish]
 // #15 Create an exclude button to exclude the ingredients that the user cannot eat
 
 // #16 Set default setting for each individual
@@ -64,7 +65,15 @@
 // #1 When added barley -> bread -> remove bread. Barley result is gone. Followed by remove bread. The error message still persist [api needs to wait, fixed]
 // #2 For the tags created below search box, fix the css issue and also shrink the size of the tag [fixed]
 // #3 When mouse hover to cuisine, there is a scroll bar pops out on the side. [fixed]
+// #4 fix under 2 hours and unlimited time [fixed]
+// #5 segregate unlimited time to any time [fixed]
 
+
+//Problems to fixed
+// #1 confirm kenneth and sem, which dashboard to use
+// #2 Need to fix JC carousel. Does not appear [fixed]
+// #3 Responsiveness issue with index.html
+// #4 confirm with kenneth if need to import sql data
 
 
 

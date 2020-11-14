@@ -1,17 +1,15 @@
+<?php
+    require_once "../login_system/autoload.php";
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-
-    
     <link rel="stylesheet" href="./dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Righteous&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
-
-    
 </head>
 <body>
 
@@ -25,7 +23,7 @@
             <h3>Kyung <span>TauFoo</span></h3>
         </div>
         <div class="right_area">
-            <a href="#" class="logout_btn">Logout</a>
+            <a href="../login_system/logout.php" class="logout_btn">Logout</a>
         </div>
     </header>
     <!--header area end-->
@@ -46,7 +44,8 @@
     <!--side bar end-->
 
     <div class="content">
-
+        
     </div>
 </body>
 </html>
+

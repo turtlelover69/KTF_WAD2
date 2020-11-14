@@ -1,18 +1,28 @@
 body{
     margin: 0;
     padding: 0;
-    font-family: 'Itim', cursive"
+    font-family: "Roboto", sans-serif;
 }
 
 header{
     position: fixed;
-    background: #f4c2c2;
+    background: #57bae7;
     padding: 20px;
     width: 100%;
     height: 30px;
 }
 
+.left_area h3{
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 22px;
+    font-weight: 900;
+}
 
+.left_area span{
+    color: #1DC4E7;
+}
 
 .logout_btn{
     padding: 5px;
@@ -34,9 +44,10 @@ header{
 }
 
 .sidebar{
-    background: pink;
+    background: #2F323A;
+    margin-top: 70px;
+    padding-top: 30px;
     position: fixed;
-    padding: 20px;
     left: 0;
     width: 250px;
     height: 100%;
@@ -48,11 +59,11 @@ header{
     width: 100px;
     height: 100px;
     border-radius: 100px;
-    margin: 10px;
+    margin-bottom: 10px;
 }
 
 .sidebar h4{
-    color: #FF69B4;
+    color: #ccc;
     margin-top: 0;
     margin-bottom: 20px;
 }

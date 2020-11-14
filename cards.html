@@ -19,8 +19,78 @@
     <script src="https://kit.fontawesome.com/3b3172378c.js" crossorigin="anonymous"></script>
 
 </head>
+<script>
+  function testtest(id){
+    console.log(id);
+};
+</script>
 <body>
     <div class = "card-columns">
+      <div class="card col" style=" background-color: white" onclick="recipeSet(1049)">
+        <img class="card-img-top " src="images/happy.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title d-flex justify-content-center border border-dark">${recipe.title}</h5>
+    
+                <div class= "d-flex justify-content-center">
+                    <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.readyInMinutes} min</div>
+                    <i class="fas fa-stopwatch" style="display: inline;"></i>
+                </div>
+        
+                <div class= "d-flex justify-content-center">
+                    <div class="card-text" style="display: inline; margin-right: 10px;">${recipe.spoonacularScore} / 100</div>
+                    <i class="fas fa-star" style="display: inline;"></i>
+                </div>
+        
+                <div class= "d-flex justify-content-center">
+                    <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.missedIngredientCount} missing ingredients</div>
+                    <i class="far fa-question-circle" style="display: inline;"></i>
+                </div> 
+            </div>
+    </div>
+
+    <div class="card col" style=" background-color: white" onclick="testtest(1231)">
+      <img class="card-img-top " src="images/happy.jpg" alt="Card image cap">
+          <div class="card-body">
+              <h5 class="card-title d-flex justify-content-center border border-dark">${recipe.title}</h5>
+  
+              <div class= "d-flex justify-content-center">
+                  <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.readyInMinutes} min</div>
+                  <i class="fas fa-stopwatch" style="display: inline;"></i>
+              </div>
+      
+              <div class= "d-flex justify-content-center">
+                  <div class="card-text" style="display: inline; margin-right: 10px;">${recipe.spoonacularScore} / 100</div>
+                  <i class="fas fa-star" style="display: inline;"></i>
+              </div>
+      
+              <div class= "d-flex justify-content-center">
+                  <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.missedIngredientCount} missing ingredients</div>
+                  <i class="far fa-question-circle" style="display: inline;"></i>
+              </div> 
+          </div>
+  </div>
+
+  <div class="card col" style=" background-color: white" onclick="recipeSet(1049)">
+    <img class="card-img-top " src="images/happy.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title d-flex justify-content-center border border-dark">${recipe.title}</h5>
+
+            <div class= "d-flex justify-content-center">
+                <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.readyInMinutes} min</div>
+                <i class="fas fa-stopwatch" style="display: inline;"></i>
+            </div>
+    
+            <div class= "d-flex justify-content-center">
+                <div class="card-text" style="display: inline; margin-right: 10px;">${recipe.spoonacularScore} / 100</div>
+                <i class="fas fa-star" style="display: inline;"></i>
+            </div>
+    
+            <div class= "d-flex justify-content-center">
+                <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.missedIngredientCount} missing ingredients</div>
+                <i class="far fa-question-circle" style="display: inline;"></i>
+            </div> 
+        </div>
+</div>
         <div class="card" style=" background-color: white">
             <img class="card-img-top" src="images/happy.jpg" alt="Card image cap">
             <div class="card-body">
@@ -42,5 +112,10 @@
             </div>
           </div>
     </div>
+
+
+    <script src="js/apiConnect.js"></script>
+    <script src="js/categories.js"></script>
+    <script src="js/dropdown.js"></script>
 </body>
 </html>

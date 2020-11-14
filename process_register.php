@@ -1,4 +1,80 @@
+<?php
+	session_start();
+    require_once "login_system/autoload.php";
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $password1 = $_POST["password1"];
+    $password2 = $_POST["password2"];
+    $errors = array();
+
+    $dao = new UserDAO();
+    $user_exist = $dao->usernameExist($username);
+    $email_exist = $dao->emailExist($email);
+
+    if ($user_exist && !empty($username)){
+        array_push($errors, "Username has already been taken!");
+    }
+
+    if ($email_exist && !empty($email)){
+        array_push($errors, "Email has already been taken");
+    }
+
+    if ($password1 != $password2){
+        array_push($errors, "Passwords do not match!");
+    }
+
+    if (empty($username)) { 
+		array_push($errors, "Username is required"); 
+    }
+    
+	if (empty($email)) { 
+		array_push($errors, "Email is required"); 
+    }
+    
+	if (empty($password1)) { 
+		array_push($errors, "Password is required"); 
+	}
+	
+	if (!empty($errors)){
+		$_SESSION["errors"] = $errors;
+		header("Location: register.php");
+	}
+
+//     if (empty($errors)){
+//         $hashed = password_hash($password1, PASSWORD_DEFAULT);
+
+//         $user = new User($username, $email, $hashed);
+//         $dao = new UserDAO();
+//         $status = $dao->add($user);
+        
+//         echo "Successfully registered!";
+//     }
+//     else{
+//         foreach($errors as $error){
+//             echo $error. "<br>";
+//         }
+//     }
+// ?>
+
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Kyong Tau Foo</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <!-- Javascript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -22,9 +98,9 @@
 
 </head>
 
-<body id="app" onload='populate_categories();call_api(1,"getRandom"); populate_carousel();'>
+<body id="app" onload='populate_categories()'>
     <!--Navbar-->
-    <div id="sticky_top" style='position: sticky; z-index: 5;'>
+    <div id="sticky_top" style='position: sticky'>
       <nav class="navbar navbar-expand-lg navbar-light row" style ="background-color: #FF69B4">
           <a class="navbar-brand" href="index.html">
               <img src="images/small ktf logo.png" width="85" height="40" alt="" loading="lazy" style = "margin-left:100px">
@@ -55,13 +131,16 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto" style = "margin-right: 0px; font-family: 'Itim', cursive; font-size: small;">
               <li class="nav-item active" >
-                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="allrecipe.html">Browse all recipes</a>
+                <a class="nav-link" href="#">Browse all recipes</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="profile.php">My Profile</a>
+            </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">Settings</a>
               </li>
             </ul>
           </div>
@@ -74,8 +153,8 @@
       <!--Categories-->
       <div id="categories">
           <nav class="navbar navbar-expand-lg navbar-light row" style ="padding-top: 0; padding-left: 0; padding-right: 0; ">
-            <button class="navbar-toggler bg-warning" type="button" data-toggle="collapse" data-target="#categoryNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="margin-left: 33%;">
-                <span>Show Categories</span>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#categoryNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="categoryNavDropdown">
                 <ul id='navbar' class="navbar-nav col" style="font-family: 'Itim', cursive; font-size: medium; margin-right: 0; padding-right: 0;">
@@ -83,65 +162,40 @@
                 </ul>
             </div>
           </nav>
-        </div>
       </div>
-
-    <!--Display cards-->
-
-    <div class = "row">
-        <div class = "card-columns" id = "card-columns"  style=" width:80%; margin: auto;margin-top: 30px;">
-
-        </div>
     </div>
 
+	<div class="container" style="font-family: 'Itim', cursive; font-size: medium;">
+		<?php
+		
+		        $hashed = password_hash($password1, PASSWORD_DEFAULT);
 
-    <!--Error Message-->
-    <div id = "error-msg" class='container d-flex justify-content-center mb-3'>
-
+		        $user = new User($username, $email, $hashed);
+		        $dao = new UserDAO();
+		        $status = $dao->add($user);
+				if($status){
+		        	echo "<center><h1>Successfully registered!</h1></center>";
+				}
+				else{
+					echo "<center><h1>Something went wrong. Please try again!</h1></center>";
+				}
+		?>
     </div>
+        
 
-
-
-
-<!--Carousel-->
-<div class="container d-flex justify-content-center mb-5">
-  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval= "4000" style= "width: 60%;">
-
-    <div class="carousel-inner" style='border-style:solid; border-color:black;' id="carousellocation">
-      
-
-    </div>
-    <a class='carousel-control-prev' href="#carouselExampleControls" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</div>
-    
-
-
-<!--footer-->
-<div class="footer">
-  <img src = "images/ktf_full_logo.png" width = 115 height = 40 style="margin-top:5px;">
-  &nbsp;&nbsp;&nbsp;&nbsp;Privacy Policy&nbsp;&nbsp;&nbsp;&nbsp;Sitemap &nbsp;&nbsp;&nbsp;&nbsp;© 2011 Group 29 All Rights Reserved&nbsp;&nbsp;&nbsp;&nbsp;80 Stamford Rd, Singapore 178902
-  <img src = "images/soma.png" width = 50 height = 50>
-
-</div>
-  
 
 
 <script src="js/apiConnect.js"></script>
 <script src="js/categories.js"></script>
 <script src="js/dropdown.js"></script>
-<script src="js/carouseldata.js"></script>
-<script src="js/login.js"></script>
 </body>
 </html>
 
 
 
 
+
+    
+    
+</body>
+</html>

@@ -17,6 +17,7 @@
     <script src='bower_components/typeahead.js/dist/typeahead.bundle.min.js'></script>
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Righteous&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/3b3172378c.js" crossorigin="anonymous"></script>
 
 </head>
@@ -31,26 +32,12 @@
     </style>
 </head>
 
-<body style = "background-color: black"  onload='populate_categories()'>
+<body style = "background-color: black"  onload="populateRecipe()">
     <!--Navbar-->
-    <script>
-      function addsession(id){
-        sessionStorage.setItem("recipeID", id);
-      }
-
-      function getsession(){
-        console.log(sessionStorage.getItem("recipeID"));
-      } 
-
-      function populateRecipe(){
-        let id=sessionStorage.getItem("recipeID");
-        call_api(id,"getDetail");
-      }
-    </script>
-
+    
     <div id="sticky_top" style='position: sticky'>
       <nav class="navbar navbar-expand-lg navbar-light row" style ="background-color: #FF69B4; position: sticky">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="index.html">
               <img src="images/small ktf logo.png" width="85" height="40" alt="" loading="lazy" style = "margin-left:100px">
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,89 +50,72 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto" style = "margin-right: 0px; font-family: 'Itim', cursive; font-size: large;">
               <li class="nav-item active" >
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Browse all recipes</a>
+                <a class="nav-link" href="allrecipe.html">Browse all recipes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">My Profile</a>
-            </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Settings</a>
+                <a class="nav-link" href="profile.php">My Profile</a>
               </li>
             </ul>
           </div>
       </nav>
 
       <!-- Main page container -->
-      <div class="container-fluid row" onload="populateRecipe()">
+      <div class="container-fluid row mt-3" style = "font-family: 'Itim', cursive;" >
 
         <!-- everything besides video-->
-        <div class="container row col-9">
+        <div class="container row col-10">
 
         <!-- image+summary -->
         <div class="container-fluid row">
 
             <!-- image -->
           <div class="container col-5">
-            <img id="recipeImage" src='https://spoonacular.com/recipeImages/955152-556x370.jpg' class="img-fluid" alt="">
+            <img id="recipeImage" src='https://spoonacular.com/recipeImages/955152-556x370.jpg' class="img-fluid" alt="" style = "border-style: solid; border-color:black;">
+            <img src="images/sakura.png" class="img-fluid" alt="">
           </div>
 
           <!-- summary -->
           <div class="container col-7">
-            <h1 id="recipeTitle">Recipe title</h1>
+            <h1 id="recipeTitle" class = "bg-warning" style = "border-style: solid; border-color:black;">Recipe title</h1>
             <div id="recipeDiet">
             </div>
-            <div id="recipeSummary">summary</div>
-            <div id="recipeServing">serves 4 adult Cooks in 15 minutes </div>
-            <div class="container">
-              NUTRITION PER SERVING
-                <table class="table container-fluid" style='border:solid;'>
+            <div style ="border-style: solid; border-radius: 3%; font-size: xx-small;" id="recipeSummary">summary</div>
+            <div class = "mt-3" style ="border-style: solid; border-radius: 3%;" id="recipeServing">serves 4 adult Cooks in 15 minutes </div>
+            <div class="container mt-3" style= "padding-left: 0; border-style: solid; background-color: white;">
+            
+              Nutrition per serving
+                <table class="table container-fluid col" style=' background-color: white; table-layout: fixed; font-size: xx-small;'>
                     <thead>
                       <tr>
                         <th >Calories</th>
                         <th >Fat</th>
-                        <th >Saturates</th>
                         <th >Sugars</th>
                         <th >Salt</th>
                         <th >Protein</th>
                         <th >Carbs</th>
-                        <th >Fibre</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Mark</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                      <tr id="nutriunit">
+                        
                       </tr>
-                      <tr>
-                        <td>Mark</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                      <tr id="nutripercent">
+                        
                       </tr>
                     
                     </tbody>
                   </table>
-                OF AN ADULT'S REFERENCE INTAKE
+                *of an adult's reference intake
             </div>
           </div>
         </div>
 
-        <div class="container-fluid row">
+        <div class="container-fluid row mt-3">
         <!-- ingredients -->
-          <div class="container col-5">
+          <div class="container col-4" style = "border-style: solid; border-color:black; background-color: #ffff66">
               <h2>Ingredients</h2>
               <div>
                 <ul  id="recipeIngredients">
@@ -157,12 +127,12 @@
 
 
         <!-- steps -->
-          <div class="container col-7">
+          <div class="container col-7" style = "border-style: solid; border-color:black; background-color: #ffff99">
               <h2>Instructions</h2>
               <div>
-                <ul id="recipeInstructions">
+                <ol id="recipeInstructions">
 
-                </ul>
+                </ol>
               </div>
 
   
@@ -173,11 +143,11 @@
       </div>
 
       <!-- youtube video-->
-      <div class="container col-2">
-        Related Video
+      <div class="container col-2"  >
+        <span>Related Videos:</span>
+        <div id="recipeVideo" style ="border-style: solid;">
 
-        <img src='https://spoonacular.com/recipeImages/955152-556x370.jpg' class="img-fluid" alt="">
-        Video Title
+        </div>
       </div>
 
       </div>
@@ -187,8 +157,16 @@
 
 
 
-    </div>
-    </div>
+</div>
+</div>
+
+
+<div class="footer">
+    <img src = "images/ktf_full_logo.png" width = 115 height = 40 style="margin-top:5px;">
+    &nbsp;&nbsp;&nbsp;&nbsp;Privacy Policy&nbsp;&nbsp;&nbsp;&nbsp;Sitemap &nbsp;&nbsp;&nbsp;&nbsp;© 2011 Group 29 All Rights Reserved&nbsp;&nbsp;&nbsp;&nbsp;80 Stamford Rd, Singapore 178902
+    <img src = "images/soma.png" width = 50 height = 50>
+  
+</div>
 
     
 
