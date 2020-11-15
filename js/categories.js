@@ -170,7 +170,7 @@ function actionFunction(xml,functionName){
                             </div>
                     
                             <div class= "d-flex justify-content-center">
-                                <div class="card-text" style="display: inline;margin-right: 10px;">${recipe.missedIngredientCount} missing ingredients</div>
+                                <div class="card-text" style="display: inline;margin-right: 10px;font-size:small;">${recipe.missedIngredientCount} missing ingredients</div>
                                 <i class="far fa-question-circle" style="display: inline;"></i>
                             </div> 
                         </div>
@@ -218,6 +218,7 @@ function actionFunction(xml,functionName){
         var parseJSON = JSON.parse(xml.responseText);
         document.getElementById("recipeImage").setAttribute("src",parseJSON.image);
         document.getElementById("recipeTitle").innerText= parseJSON.title;
+        document.getElementById("recipeID").value = parseJSON.id;
 
         let dietpill="";
         let diets=parseJSON.diets;
@@ -289,7 +290,7 @@ function actionFunction(xml,functionName){
                 youtubetitle=youtubetitle+parseJSON.title[i];
             };
           }
-        console.log(youtubetitle);
+        // console.log(youtubetitle);
         call_api(youtubetitle,"youtubeLink");
 
     }
@@ -406,4 +407,30 @@ function populate_carousel(){
       </div>`;
     }
     document.getElementById("carousellocation").innerHTML=carouselcontent;
+}
+
+
+//Pass recipe to PHP for storage
+// function pass_recipe(){
+    // var recipe_name = document.getElementById('recipeTitle');
+    // console.log(recipe_name)
+    // document.getElementById('recipe').value = recipe_name;
+
+
+    // console.log(recipe_name);
+    // $.ajax({
+    //     url: 'integration.php', 
+    //     method: "post",
+    //     data: {recipe: JSON.stringify(recipe_obj)},    
+    //     success: function(data){
+    //         console.log("successfully");
+    //     }
+    // }); 
+
+// }
+function recipeImageRandom(){
+    let imagecount=Object.keys(randomImgUrl).length;
+    console.log(imagecount);
+    let rannum=Math.floor(Math.random() * imagecount);
+    document.getElementById("recipeFillerImage").setAttribute("src","images/random/"+randomImgUrl[rannum]);
 }

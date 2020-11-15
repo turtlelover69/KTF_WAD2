@@ -75,18 +75,15 @@
           <!--Right navigation bar-->
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto" style = "margin-right: 0px; font-family: 'Itim', cursive; font-size: small;">
-              <li class="nav-item active" >
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <li class="nav-item" >
+                <a class="nav-link" href="index.html">Home </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Browse all recipes</a>
+                <a class="nav-link" href="allrecipe.html">Browse all recipes</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="profile.php">My Profile</a>
+              <li class="nav-item active">
+                <a class="nav-link" href="profile.php">My Profile<span class="sr-only">(current)</span></a>
             </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">Settings</a>
-              </li>
             </ul>
           </div>
 

@@ -314,6 +314,7 @@ function actionFunction(xml,functionName){
         var parseJSON = JSON.parse(xml.responseText);
         document.getElementById("recipeImage").setAttribute("src",parseJSON.image);
         document.getElementById("recipeTitle").innerText= parseJSON.title;
+        document.getElementById("recipeID").value = parseJSON.id;
 
         let dietpill="";
         let diets=parseJSON.diets;
